@@ -8,6 +8,7 @@ import { StatementBanner } from "@/components/sections/StatementBanner";
 import { RemovalTimeline } from "@/components/timeline/RemovalTimeline";
 import { journeySteps, routeLookup, routeOrder, timelineEvents, trailRoutes } from "@/data/trailData";
 import type { JourneyStepId, RouteFilter, RouteId } from "@/types/trail";
+import { Analytics } from '@vercel/analytics/react';
 
 const initialRouteId: RouteId = "cherokee";
 const initialLocationId = routeLookup[initialRouteId].locations[0]?.id ?? "";
