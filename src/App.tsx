@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import { RouteFilters } from "@/components/filters/RouteFilters";
 import { HeroHeader } from "@/components/layout/HeroHeader";
@@ -67,6 +68,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Analytics />
+      <SpeedInsights />
       <HeroHeader
         journeySteps={journeySteps}
         activeNavLabel={activeNavLabel}
