@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { RouteFilters } from "@/components/filters/RouteFilters";
 import { HeroHeader } from "@/components/layout/HeroHeader";
 import { JourneySidebar } from "@/components/layout/JourneySidebar";
