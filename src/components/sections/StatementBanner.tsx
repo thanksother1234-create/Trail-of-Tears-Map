@@ -81,11 +81,21 @@ export function StatementBanner() {
             </a>
           </div>
 
-          <div className="mt-6 flex items-center gap-3 text-[#d5b471]">
+          <div className="mt-6 flex gap-3 text-[#d5b471]">
             <ArrowDown className="h-4 w-4" />
-            <span className="text-xs font-semibold uppercase tracking-[0.24em]">
-              Scroll, then pick another route
-            </span>
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-semibold uppercase tracking-[0.24em]">
+                Created by Riley Griffin : CC1030660 : rgriffin2650@collin.edu
+              </span>
+              <a
+                href="https://github.com/thanksother1234-create/Trail-of-Tears-Map"
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d5b471] underline decoration-[#d5b471]/30 hover:decoration-[#d5b471]"
+              >
+                GitHub repository
+              </a>
+            </div>
           </div>
         </div>
       </div>
