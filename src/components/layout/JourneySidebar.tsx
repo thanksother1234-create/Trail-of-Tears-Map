@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Flag, Landmark, Route, Scale, Users } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import type { JourneyStep } from "@/types/trail";
+import type { JourneyStep, JourneyStepId } from "@/types/trail";
 
 const iconMap = {
   landmark: Landmark,
@@ -14,10 +14,11 @@ const iconMap = {
 
 interface JourneySidebarProps {
   steps: JourneyStep[];
+  activeStepId: JourneyStepId;
   className?: string;
 }
 
-export function JourneySidebar({ steps, className }: JourneySidebarProps) {
+export function JourneySidebar({ steps, activeStepId, className }: JourneySidebarProps) {
   return (
     <aside id="journey" className={cn("lg:sticky lg:top-6 lg:h-fit", className)}>
       <div className="paper-panel overflow-hidden rounded-[2rem] p-6">
@@ -33,7 +34,7 @@ export function JourneySidebar({ steps, className }: JourneySidebarProps) {
         <div className="mt-5 space-y-3">
           {steps.map((step, index) => {
             const Icon = iconMap[step.icon];
-            const isActive = step.id === "the-route";
+            const isActive = step.id === activeStepId;
 
             return (
               <motion.div
