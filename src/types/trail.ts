@@ -2,6 +2,13 @@ export type RouteId = "cherokee" | "choctaw" | "chickasaw" | "creek" | "seminole
 
 export type RouteFilter = RouteId | "all";
 
+export type JourneyStepId =
+  | "before-removal"
+  | "the-law"
+  | "the-route"
+  | "the-human-cost"
+  | "conclusion";
+
 export interface SourceLink {
   label: string;
   url: string;
@@ -39,7 +46,7 @@ export interface TimelineEvent {
 }
 
 export interface JourneyStep {
-  id: string;
+  id: JourneyStepId;
   title: string;
   description: string;
   icon: "landmark" | "scale" | "route" | "users" | "flag";

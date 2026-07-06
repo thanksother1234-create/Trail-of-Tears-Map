@@ -2,23 +2,25 @@ import { motion } from "framer-motion";
 
 import { MobileJourneySheet } from "@/components/layout/MobileJourneySheet";
 import { Badge } from "@/components/ui/badge";
-import type { JourneyStep } from "@/types/trail";
+import type { JourneyStep, JourneyStepId } from "@/types/trail";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "The Law", href: "#journey" },
-  { label: "The Lands", href: "#route" },
-  { label: "The Route", href: "#route", active: true },
-  { label: "The Human Cost", href: "#impact" },
-  { label: "Conclusion", href: "#conclusion" },
-  { label: "Sources", href: "#sources" },
+  { label: "The Law", href: "#journey", journeyStepId: "the-law" as JourneyStepId },
+  { label: "The Lands", href: "#journey", journeyStepId: "before-removal" as JourneyStepId },
+  { label: "The Route", href: "#route", journeyStepId: "the-route" as JourneyStepId },
+  { label: "The Human Cost", href: "#impact", journeyStepId: "the-human-cost" as JourneyStepId },
+  { label: "Conclusion", href: "#conclusion", journeyStepId: "conclusion" as JourneyStepId },
+  { label: "Sources", href: "#sources", journeyStepId: "conclusion" as JourneyStepId },
 ];
 
 interface HeroHeaderProps {
   journeySteps: JourneyStep[];
+  activeNavLabel: string;
+  onNavigate: (navLabel: string, journeyStepId?: JourneyStepId) => void;
 }
 
-export function HeroHeader({ journeySteps }: HeroHeaderProps) {
+export function HeroHeader({ journeySteps, activeNavLabel, onNavigate }: HeroHeaderProps) {
   return (
     <header
       id="home"
@@ -62,19 +64,26 @@ export function HeroHeader({ journeySteps }: HeroHeaderProps) {
           </motion.div>
 
           <div className="flex items-start gap-4">
-            <MobileJourneySheet steps={journeySteps} />
+            <MobileJourneySheet
+              steps={journeySteps}
+              activeStepId={
+                navLinks.find((link) => link.label === activeNavLabel)?.journeyStepId ?? "the-route"
+              }
+            />
 
             <nav className="hidden max-w-[42rem] flex-wrap justify-end gap-x-6 gap-y-3 text-sm text-stone-200 lg:flex">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
+                  onClick={() => onNavigate(link.label, link.journeyStepId)}
+                  aria-current={link.label === activeNavLabel ? "page" : undefined}
                   className={`relative pb-2 transition hover:text-white ${
-                    link.active ? "text-white" : "text-stone-300"
+                    link.label === activeNavLabel ? "text-white" : "text-stone-300"
                   }`}
                 >
                   {link.label}
-                  {link.active ? (
+                  {link.label === activeNavLabel ? (
                     <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-[#d6b36c]" />
                   ) : null}
                 </a>

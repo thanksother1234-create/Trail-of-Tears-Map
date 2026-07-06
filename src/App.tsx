@@ -8,15 +8,19 @@ import { InfoPanel } from "@/components/panels/InfoPanel";
 import { StatementBanner } from "@/components/sections/StatementBanner";
 import { RemovalTimeline } from "@/components/timeline/RemovalTimeline";
 import { journeySteps, routeLookup, routeOrder, timelineEvents, trailRoutes } from "@/data/trailData";
-import type { RouteFilter, RouteId } from "@/types/trail";
+import type { JourneyStepId, RouteFilter, RouteId } from "@/types/trail";
 
 const initialRouteId: RouteId = "cherokee";
 const initialLocationId = routeLookup[initialRouteId].locations[0]?.id ?? "";
+const initialJourneyStepId: JourneyStepId = "the-route";
 
 export default function App() {
   const [visibleFilter, setVisibleFilter] = useState<RouteFilter>("all");
   const [selectedRouteId, setSelectedRouteId] = useState<RouteId>(initialRouteId);
   const [selectedLocationId, setSelectedLocationId] = useState(initialLocationId);
+  const [activeNavLabel, setActiveNavLabel] = useState("The Route");
+  const [activeJourneyStepId, setActiveJourneyStepId] =
+    useState<JourneyStepId>(initialJourneyStepId);
 
   const selectedRoute = routeLookup[selectedRouteId];
   const selectedLocation =
@@ -51,13 +55,29 @@ export default function App() {
     syncRouteSelection(routeId, locationId);
   }
 
+  function handleHeroNavigate(navLabel: string, journeyStepId?: JourneyStepId) {
+    setActiveNavLabel(navLabel);
+
+    if (journeyStepId) {
+      setActiveJourneyStepId(journeyStepId);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <HeroHeader journeySteps={journeySteps} />
+      <HeroHeader
+        journeySteps={journeySteps}
+        activeNavLabel={activeNavLabel}
+        onNavigate={handleHeroNavigate}
+      />
 
       <main className="mx-auto max-w-[1720px] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
         <div className="grid gap-6 pt-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:gap-8 xl:pt-8">
-          <JourneySidebar steps={journeySteps} className="hidden lg:block" />
+          <JourneySidebar
+            steps={journeySteps}
+            activeStepId={activeJourneyStepId}
+            className="hidden lg:block"
+          />
 
           <section className="min-w-0 space-y-6 xl:space-y-8">
             <div

@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import type { JourneyStep } from "@/types/trail";
+import type { JourneyStep, JourneyStepId } from "@/types/trail";
 
 const iconMap = {
   landmark: Landmark,
@@ -22,9 +22,10 @@ const iconMap = {
 
 interface MobileJourneySheetProps {
   steps: JourneyStep[];
+  activeStepId: JourneyStepId;
 }
 
-export function MobileJourneySheet({ steps }: MobileJourneySheetProps) {
+export function MobileJourneySheet({ steps, activeStepId }: MobileJourneySheetProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -50,7 +51,7 @@ export function MobileJourneySheet({ steps }: MobileJourneySheetProps) {
           <div className="space-y-4">
             {steps.map((step, index) => {
               const Icon = iconMap[step.icon];
-              const isActive = step.id === "the-route";
+              const isActive = step.id === activeStepId;
 
               return (
                 <div
