@@ -120,6 +120,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Analytics />
       <HeroHeader
         activeNavLabel={activeNavLabel}
         activeStepId={activeJourneyStepId}
@@ -144,12 +145,12 @@ export default function App() {
               <div className="absolute -right-16 top-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(191,145,67,0.24),transparent_72%)]" />
 
               <div className="relative flex flex-col gap-5">
-                <div className="max-w-3xl">
+                <div className="w-full">
                   <p className="section-kicker">The Route</p>
-                  <h2 className="mt-3 max-w-4xl font-display text-4xl leading-none tracking-tight text-stone-950 sm:text-5xl xl:text-[4rem]">
+                  <h2 className="mt-3 w-full font-display text-4xl leading-none tracking-tight text-stone-950 sm:text-5xl xl:text-[4rem]">
                     Follow the forced paths west and trace where each nation was pushed.
                   </h2>
-                  <p className="mt-4 max-w-2xl text-pretty text-sm leading-7 text-stone-700 sm:text-base">
+                  <p className="mt-4 text-pretty text-sm leading-7 text-stone-700 sm:text-base">
                     Select a route or a location to move through the geography of removal. The map,
                     timeline, and narrative panel stay linked so the journey reads like a guided
                     historical atlas instead of a static diagram.
