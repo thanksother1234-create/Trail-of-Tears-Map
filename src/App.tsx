@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { Analytics } from "@vercel/analytics/react";
-
+import { useEffect, useState } from "react";
 import { RouteFilters } from "@/components/filters/RouteFilters";
 import { HeroHeader } from "@/components/layout/HeroHeader";
 import { JourneySidebar } from "@/components/layout/JourneySidebar";
@@ -10,23 +8,74 @@ import { StatementBanner } from "@/components/sections/StatementBanner";
 import { RemovalTimeline } from "@/components/timeline/RemovalTimeline";
 import { journeySteps, routeLookup, routeOrder, timelineEvents, trailRoutes } from "@/data/trailData";
 import type { JourneyStepId, RouteFilter, RouteId } from "@/types/trail";
+import { Analytics } from '@vercel/analytics/react';
 
 const initialRouteId: RouteId = "cherokee";
 const initialLocationId = routeLookup[initialRouteId].locations[0]?.id ?? "";
 const initialJourneyStepId: JourneyStepId = "the-route";
+const initialNavLabel = "The Route";
+
+function resolveNavigationState(hash: string) {
+  switch (hash) {
+    case "#before-removal":
+      return { navLabel: "The Lands", journeyStepId: "before-removal" as JourneyStepId };
+    case "#the-law":
+      return { navLabel: "The Law", journeyStepId: "the-law" as JourneyStepId };
+    case "#route":
+      return { navLabel: "The Route", journeyStepId: "the-route" as JourneyStepId };
+    case "#impact":
+      return { navLabel: "The Human Cost", journeyStepId: "the-human-cost" as JourneyStepId };
+    case "#conclusion":
+      return { navLabel: "Conclusion", journeyStepId: "conclusion" as JourneyStepId };
+    case "#sources":
+      return { navLabel: "Sources", journeyStepId: "conclusion" as JourneyStepId };
+    case "#home":
+      return { navLabel: "Home" };
+    default:
+      return undefined;
+  }
+}
 
 export default function App() {
   const [visibleFilter, setVisibleFilter] = useState<RouteFilter>("all");
   const [selectedRouteId, setSelectedRouteId] = useState<RouteId>(initialRouteId);
   const [selectedLocationId, setSelectedLocationId] = useState(initialLocationId);
-  const [activeNavLabel, setActiveNavLabel] = useState("The Route");
-  const [activeJourneyStepId, setActiveJourneyStepId] =
-    useState<JourneyStepId>(initialJourneyStepId);
+  const [activeNavLabel, setActiveNavLabel] = useState(initialNavLabel);
+  const [activeJourneyStepId, setActiveJourneyStepId] = useState<JourneyStepId>(initialJourneyStepId);
 
   const selectedRoute = routeLookup[selectedRouteId];
   const selectedLocation =
     selectedRoute.locations.find((location) => location.id === selectedLocationId) ??
     selectedRoute.locations[0];
+
+  useEffect(() => {
+    function syncNavigationFromHash() {
+      const currentHash = window.location.hash;
+
+      if (!currentHash) {
+        return;
+      }
+
+      const nextState = resolveNavigationState(currentHash);
+
+      if (!nextState) {
+        return;
+      }
+
+      setActiveNavLabel(nextState.navLabel);
+
+      if (nextState.journeyStepId) {
+        setActiveJourneyStepId(nextState.journeyStepId);
+      }
+    }
+
+    syncNavigationFromHash();
+    window.addEventListener("hashchange", syncNavigationFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncNavigationFromHash);
+    };
+  }, []);
 
   function syncRouteSelection(routeId: RouteId, locationId?: string) {
     const route = routeLookup[routeId];
@@ -38,6 +87,8 @@ export default function App() {
 
   function handleFilterChange(filter: RouteFilter) {
     setVisibleFilter(filter);
+    setActiveNavLabel("The Route");
+    setActiveJourneyStepId("the-route");
 
     if (filter !== "all") {
       syncRouteSelection(filter);
@@ -49,10 +100,14 @@ export default function App() {
       (location) => location.id === selectedLocationId,
     );
 
+    setActiveNavLabel("The Route");
+    setActiveJourneyStepId("the-route");
     syncRouteSelection(routeId, activeLocationIsOnRoute ? selectedLocationId : undefined);
   }
 
   function handleLocationSelect(routeId: RouteId, locationId: string) {
+    setActiveNavLabel("The Route");
+    setActiveJourneyStepId("the-route");
     syncRouteSelection(routeId, locationId);
   }
 
@@ -68,16 +123,17 @@ export default function App() {
     <div className="min-h-screen bg-background text-foreground">
       <Analytics />
       <HeroHeader
-        journeySteps={journeySteps}
         activeNavLabel={activeNavLabel}
+        activeStepId={activeJourneyStepId}
+        journeySteps={journeySteps}
         onNavigate={handleHeroNavigate}
       />
 
       <main className="mx-auto max-w-[1720px] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
         <div className="grid gap-6 pt-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:gap-8 xl:pt-8">
           <JourneySidebar
-            steps={journeySteps}
             activeStepId={activeJourneyStepId}
+            steps={journeySteps}
             className="hidden lg:block"
           />
 
@@ -145,6 +201,8 @@ export default function App() {
                 }
 
                 setVisibleFilter("all");
+                setActiveNavLabel("The Route");
+                setActiveJourneyStepId("the-route");
                 syncRouteSelection(routeId);
               }}
             />
