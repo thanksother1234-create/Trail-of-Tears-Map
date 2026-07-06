@@ -6,8 +6,8 @@ import type { JourneyStep, JourneyStepId } from "@/types/trail";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "The Law", href: "#journey", journeyStepId: "the-law" as JourneyStepId },
   { label: "The Lands", href: "#journey", journeyStepId: "before-removal" as JourneyStepId },
+  { label: "The Law", href: "#journey", journeyStepId: "the-law" as JourneyStepId },
   { label: "The Route", href: "#route", journeyStepId: "the-route" as JourneyStepId },
   { label: "The Human Cost", href: "#impact", journeyStepId: "the-human-cost" as JourneyStepId },
   { label: "Conclusion", href: "#conclusion", journeyStepId: "conclusion" as JourneyStepId },
