@@ -13,12 +13,12 @@ const iconMap = {
 };
 
 interface JourneySidebarProps {
-  steps: JourneyStep[];
   activeStepId: JourneyStepId;
+  steps: JourneyStep[];
   className?: string;
 }
 
-export function JourneySidebar({ steps, activeStepId, className }: JourneySidebarProps) {
+export function JourneySidebar({ activeStepId, steps, className }: JourneySidebarProps) {
   return (
     <aside id="journey" className={cn("lg:sticky lg:top-6 lg:h-fit", className)}>
       <div className="paper-panel overflow-hidden rounded-[2rem] p-6">
@@ -39,11 +39,12 @@ export function JourneySidebar({ steps, activeStepId, className }: JourneySideba
             return (
               <motion.div
                 key={step.id}
+                id={step.id}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.08 * index, duration: 0.45 }}
                 className={cn(
-                  "rounded-[1.4rem] border px-4 py-4 transition",
+                  "scroll-mt-8 rounded-[1.4rem] border px-4 py-4 transition",
                   isActive
                     ? "border-[#d8c296]/35 bg-[#f3ecde]/88 shadow-[0_12px_30px_rgba(73,52,26,0.08)]"
                     : "border-stone-400/14 bg-white/50",
@@ -78,7 +79,7 @@ export function JourneySidebar({ steps, activeStepId, className }: JourneySideba
 
         <div className="mt-5 rounded-[1.6rem] border border-stone-400/14 bg-[#ede5d5]/92 p-5">
           <p className="font-display text-[1.55rem] italic leading-8 text-stone-900">
-            “This was not empty land and it was not voluntary movement.”
+            "This was not empty land and it was not voluntary movement."
           </p>
           <p className="mt-4 text-xs uppercase tracking-[0.28em] text-stone-500">
             Context card

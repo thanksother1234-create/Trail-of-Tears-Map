@@ -1,6 +1,17 @@
 import { Fragment, useEffect } from "react";
-import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip, ZoomControl, useMap } from "react-leaflet";
-import { latLngBounds } from "leaflet";
+import {
+  CircleMarker,
+  MapContainer,
+  Marker,
+  Pane,
+  Polygon,
+  Polyline,
+  TileLayer,
+  Tooltip,
+  ZoomControl,
+  useMap,
+} from "react-leaflet";
+import { divIcon, latLngBounds, type LatLngTuple } from "leaflet";
 
 import { RouteLegend } from "@/components/map/RouteLegend";
 import type { RouteFilter, RouteId, TrailRoute } from "@/types/trail";
@@ -14,6 +25,27 @@ interface TrailMapProps {
   onLocationSelect: (routeId: RouteId, locationId: string) => void;
 }
 
+const indianTerritoryOutline: LatLngTuple[] = [
+  [37.0, -103.0],
+  [36.5, -103.0],
+  [36.5, -100.0],
+  [34.56, -100.0],
+  [34.56, -94.43],
+  [37.0, -94.43],
+];
+
+const indianTerritoryLabelIcon = divIcon({
+  className: "indian-territory-label",
+  html: `
+    <div class="indian-territory-label__frame">
+      <span class="indian-territory-label__eyebrow">Present-day Oklahoma</span>
+      <span class="indian-territory-label__title">Indian Territory</span>
+    </div>
+  `,
+  iconAnchor: [88, 34],
+  iconSize: [176, 68],
+});
+
 function MapViewport({ routes }: { routes: TrailRoute[] }) {
   const map = useMap();
 
@@ -24,13 +56,105 @@ function MapViewport({ routes }: { routes: TrailRoute[] }) {
       return;
     }
 
-    map.fitBounds(latLngBounds(coordinates).pad(0.2), {
+    map.fitBounds(latLngBounds(coordinates).pad(0.1), {
       animate: true,
       duration: 0.9,
+      maxZoom: 5.9,
     });
   }, [map, routes]);
 
   return null;
+}
+
+function TerritoryOverlay() {
+  return (
+    <>
+      <Pane name="territory-glow" style={{ zIndex: 285 }}>
+        <Polygon
+          interactive={false}
+          positions={indianTerritoryOutline}
+          pathOptions={{
+            color: "#edf3e3",
+            fillOpacity: 0,
+            opacity: 0.32,
+            weight: 10,
+          }}
+        />
+      </Pane>
+
+      <Pane name="territory-fill" style={{ zIndex: 290 }}>
+        <Polygon
+          interactive={false}
+          positions={indianTerritoryOutline}
+          pathOptions={{
+            color: "#7f8f67",
+            fillColor: "#becba6",
+            fillOpacity: 0.34,
+            opacity: 0.86,
+            weight: 1.4,
+          }}
+        />
+        <Marker interactive={false} position={[35.78, -98.62]} icon={indianTerritoryLabelIcon} />
+      </Pane>
+    </>
+  );
+}
+
+interface HistoricalRouteLineProps {
+  isSelected: boolean;
+  isVisibleAlone: boolean;
+  onRouteSelect: (routeId: RouteId) => void;
+  route: TrailRoute;
+}
+
+function HistoricalRouteLine({
+  isSelected,
+  isVisibleAlone,
+  onRouteSelect,
+  route,
+}: HistoricalRouteLineProps) {
+  const outerOpacity = isVisibleAlone ? 0.92 : isSelected ? 0.9 : 0.8;
+  const routeOpacity = isVisibleAlone ? 0.98 : isSelected ? 0.98 : 0.84;
+
+  return (
+    <>
+      <Polyline
+        interactive={false}
+        positions={route.lineCoordinates}
+        pathOptions={{
+          color: "#f8f1df",
+          lineCap: "round",
+          lineJoin: "round",
+          opacity: outerOpacity,
+          weight: isSelected ? 12 : 9.4,
+        }}
+      />
+      <Polyline
+        interactive={false}
+        positions={route.lineCoordinates}
+        pathOptions={{
+          color: route.color,
+          lineCap: "round",
+          lineJoin: "round",
+          opacity: routeOpacity,
+          weight: isSelected ? 7.1 : 5.25,
+        }}
+      />
+      <Polyline
+        positions={route.lineCoordinates}
+        pathOptions={{
+          color: "#fff6e4",
+          lineCap: "round",
+          lineJoin: "round",
+          opacity: isVisibleAlone ? 0.34 : isSelected ? 0.32 : 0.18,
+          weight: isSelected ? 1.6 : 1.2,
+        }}
+        eventHandlers={{
+          click: () => onRouteSelect(route.id),
+        }}
+      />
+    </>
+  );
 }
 
 export function TrailMap({
@@ -41,7 +165,8 @@ export function TrailMap({
   onRouteSelect,
   onLocationSelect,
 }: TrailMapProps) {
-  const visibleRoutes = visibleFilter === "all" ? routes : routes.filter((route) => route.id === visibleFilter);
+  const visibleRoutes =
+    visibleFilter === "all" ? routes : routes.filter((route) => route.id === visibleFilter);
   const drawOrder = [...visibleRoutes].sort((left, right) => {
     if (left.id === selectedRouteId) {
       return 1;
@@ -57,9 +182,10 @@ export function TrailMap({
   return (
     <div className="space-y-4">
       <div className="paper-panel relative overflow-hidden rounded-[1.9rem] p-3 sm:p-4">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(195,143,53,0.16),transparent_24%),radial-gradient(circle_at_20%_70%,rgba(36,114,176,0.1),transparent_26%)]" />
-        <div className="relative overflow-hidden rounded-[1.55rem] border border-stone-400/16">
-          <div className="absolute inset-0 z-[350] bg-[linear-gradient(180deg,rgba(255,255,255,0.1),transparent_14%,transparent_86%,rgba(0,0,0,0.04))] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_14%,rgba(195,143,53,0.18),transparent_24%),radial-gradient(circle_at_18%_72%,rgba(120,145,110,0.16),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.18),rgba(239,230,214,0.06))]" />
+        <div className="relative overflow-hidden rounded-[1.55rem] border border-stone-400/16 shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_18px_40px_rgba(45,30,15,0.09)]">
+          <div className="pointer-events-none absolute inset-0 z-[350] bg-[linear-gradient(180deg,rgba(255,255,255,0.26),transparent_16%,transparent_82%,rgba(63,44,23,0.08)),radial-gradient(circle_at_14%_26%,rgba(189,205,164,0.12),transparent_22%),radial-gradient(circle_at_84%_78%,rgba(84,123,152,0.12),transparent_24%)]" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[360] h-24 bg-[linear-gradient(180deg,transparent,rgba(28,23,16,0.08))]" />
 
           <MapContainer
             center={[34.6, -89.8]}
@@ -68,31 +194,26 @@ export function TrailMap({
             maxZoom={8}
             zoomControl={false}
             scrollWheelZoom={false}
-            className="h-[480px] w-full sm:h-[560px] xl:h-[620px]"
+            className="h-[500px] w-full sm:h-[580px] xl:h-[640px]"
           >
             <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+              attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
             />
             <ZoomControl position="bottomright" />
             <MapViewport routes={visibleRoutes} />
+            <TerritoryOverlay />
 
             {drawOrder.map((route) => {
               const isSelected = route.id === selectedRouteId;
 
               return (
                 <Fragment key={route.id}>
-                  <Polyline
-                    positions={route.lineCoordinates}
-                    pathOptions={{
-                      color: route.color,
-                      weight: isSelected ? 7 : 4.2,
-                      opacity: visibleFilter === "all" ? (isSelected ? 0.96 : 0.52) : 0.94,
-                      lineCap: "round",
-                    }}
-                    eventHandlers={{
-                      click: () => onRouteSelect(route.id),
-                    }}
+                  <HistoricalRouteLine
+                    isSelected={isSelected}
+                    isVisibleAlone={visibleFilter !== "all"}
+                    onRouteSelect={onRouteSelect}
+                    route={route}
                   />
 
                   {route.locations.map((location) => {
@@ -102,12 +223,13 @@ export function TrailMap({
                       <CircleMarker
                         key={location.id}
                         center={location.coordinates}
-                        radius={isLocationSelected ? 8.5 : isSelected ? 6.4 : 5.5}
+                        radius={isLocationSelected ? 9.4 : isSelected ? 7 : 6}
                         pathOptions={{
                           color: "#fff7ea",
-                          weight: isLocationSelected ? 3 : 2.2,
                           fillColor: route.color,
-                          fillOpacity: isLocationSelected ? 1 : 0.92,
+                          fillOpacity: isLocationSelected ? 1 : 0.94,
+                          opacity: isSelected || visibleFilter !== "all" ? 1 : 0.9,
+                          weight: isLocationSelected ? 3.2 : 2.3,
                         }}
                         eventHandlers={{
                           click: () => onLocationSelect(route.id, location.id),

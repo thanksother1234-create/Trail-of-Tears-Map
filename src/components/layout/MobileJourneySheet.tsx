@@ -21,11 +21,11 @@ const iconMap = {
 };
 
 interface MobileJourneySheetProps {
-  steps: JourneyStep[];
   activeStepId: JourneyStepId;
+  steps: JourneyStep[];
 }
 
-export function MobileJourneySheet({ steps, activeStepId }: MobileJourneySheetProps) {
+export function MobileJourneySheet({ activeStepId, steps }: MobileJourneySheetProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -81,8 +81,8 @@ export function MobileJourneySheet({ steps, activeStepId }: MobileJourneySheetPr
 
             <div className="rounded-[1.6rem] border border-white/8 bg-[#101a18] p-5">
               <p className="font-display text-2xl italic leading-8 text-stone-100">
-                “This was not a migration. It was a policy carried out through routes, detention,
-                and force.”
+                "This was not a migration. It was a policy carried out through routes, detention,
+                and force."
               </p>
               <p className="mt-4 text-xs uppercase tracking-[0.28em] text-stone-400">
                 Map reading note

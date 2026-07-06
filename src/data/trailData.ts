@@ -58,10 +58,13 @@ export const trailRoutes: TrailRoute[] = [
     lineCoordinates: [
       [34.49, -85.72],
       [35.05, -85.31],
-      [36.16, -86.78],
-      [35.15, -90.05],
-      [34.75, -92.29],
-      [35.39, -94.42],
+      [35.64, -86.24],
+      [35.84, -87.18],
+      [35.55, -88.78],
+      [35.14, -90.03],
+      [35.08, -91.28],
+      [35.22, -92.61],
+      [35.58, -93.9],
       [35.92, -94.97],
     ],
     locations: [
@@ -126,10 +129,11 @@ export const trailRoutes: TrailRoute[] = [
     ],
     lineCoordinates: [
       [32.78, -89.48],
-      [33.52, -90.18],
-      [34.02, -91.34],
-      [34.75, -92.29],
-      [35.39, -94.42],
+      [33.18, -90.08],
+      [33.62, -91.03],
+      [33.94, -92.05],
+      [34.16, -93.16],
+      [34.16, -94.18],
       [34.03, -95.27],
       [34.62, -95.93],
     ],
@@ -184,9 +188,11 @@ export const trailRoutes: TrailRoute[] = [
     ],
     lineCoordinates: [
       [34.24, -88.99],
-      [35.15, -90.05],
-      [34.75, -92.29],
-      [35.39, -94.42],
+      [34.58, -89.79],
+      [34.73, -90.92],
+      [34.6, -92.01],
+      [34.38, -93.17],
+      [34.27, -94.46],
       [34.23, -96.68],
     ],
     locations: [
@@ -240,10 +246,13 @@ export const trailRoutes: TrailRoute[] = [
     ],
     lineCoordinates: [
       [32.46, -84.99],
-      [32.38, -86.31],
-      [32.52, -87.84],
-      [32.36, -88.7],
-      [34.75, -92.29],
+      [32.28, -85.72],
+      [32.28, -86.76],
+      [32.35, -87.86],
+      [32.62, -89.02],
+      [33.34, -90.22],
+      [34.28, -91.98],
+      [35.02, -93.54],
       [35.75, -95.37],
     ],
     locations: [
@@ -288,8 +297,9 @@ export const trailRoutes: TrailRoute[] = [
     label: "Seminole Route",
     color: "#c84c38",
     overview:
-      "Seminole removal was prolonged by resistance and war, making it one of the most violent and drawn-out campaigns.",
-    displacement: "From Florida through Gulf Coast corridors toward Indian Territory.",
+      "Seminole removal unfolded through war, capture, detention, and maritime transport, making it one of the most violent and prolonged campaigns of removal.",
+    displacement:
+      "From central Florida to Fort Brooke on Tampa Bay, then by Gulf transport to New Orleans and onward toward Fort Gibson in Indian Territory.",
     featuredEventId: "seminole-removal",
     sources: [
       { label: "Florida Memory", url: "https://www.floridamemory.com/" },
@@ -298,10 +308,18 @@ export const trailRoutes: TrailRoute[] = [
     lineCoordinates: [
       [29.19, -82.14],
       [27.95, -82.46],
+      [28.4, -83.2],
+      [29.1, -84.2],
+      [29.82, -85.22],
+      [30.23, -86.62],
       [30.42, -87.22],
       [30.69, -88.04],
       [29.95, -90.07],
+      [30.45, -91.14],
+      [31.31, -92.45],
       [32.53, -93.75],
+      [33.66, -94.18],
+      [34.69, -94.82],
       [35.8, -95.25],
     ],
     locations: [
@@ -317,15 +335,26 @@ export const trailRoutes: TrailRoute[] = [
           "For the Seminole, removal cannot be separated from the Second Seminole War and the violence of resistance.",
       },
       {
+        id: "fort-brooke",
+        title: "Fort Brooke, Tampa Bay",
+        subtitle: "Embarkation point",
+        year: "1835 to 1842",
+        coordinates: [27.95, -82.46],
+        description:
+          "Seminoles gathered or were forced through military posts and then sent to Tampa Bay, where transports carried many of them toward New Orleans.",
+        significance:
+          "This stop helps explain why the route crosses the Gulf: part of the removal happened by ship, not by an uninterrupted land march.",
+      },
+      {
         id: "new-orleans",
         title: "New Orleans, Louisiana",
-        subtitle: "Transport hub",
+        subtitle: "Gulf transfer hub",
         year: "1830s to 1840s",
         coordinates: [29.95, -90.07],
         description:
-          "Captured or detained Seminoles moved through Gulf transport networks that linked war zones to removal destinations.",
+          "Captured or detained Seminoles moved through New Orleans after Gulf transport from Florida before continuing west through river and overland corridors.",
         significance:
-          "This corridor reveals how ports, military routes, and detention overlapped in the machinery of removal.",
+          "This corridor reveals how ports, maritime transport, detention, and military logistics overlapped in the machinery of removal.",
       },
       {
         id: "fort-gibson",

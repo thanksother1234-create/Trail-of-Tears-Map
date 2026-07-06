@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { RouteFilters } from "@/components/filters/RouteFilters";
 import { HeroHeader } from "@/components/layout/HeroHeader";
@@ -13,19 +13,69 @@ import type { JourneyStepId, RouteFilter, RouteId } from "@/types/trail";
 const initialRouteId: RouteId = "cherokee";
 const initialLocationId = routeLookup[initialRouteId].locations[0]?.id ?? "";
 const initialJourneyStepId: JourneyStepId = "the-route";
+const initialNavLabel = "The Route";
+
+function resolveNavigationState(hash: string) {
+  switch (hash) {
+    case "#before-removal":
+      return { navLabel: "The Lands", journeyStepId: "before-removal" as JourneyStepId };
+    case "#the-law":
+      return { navLabel: "The Law", journeyStepId: "the-law" as JourneyStepId };
+    case "#route":
+      return { navLabel: "The Route", journeyStepId: "the-route" as JourneyStepId };
+    case "#impact":
+      return { navLabel: "The Human Cost", journeyStepId: "the-human-cost" as JourneyStepId };
+    case "#conclusion":
+      return { navLabel: "Conclusion", journeyStepId: "conclusion" as JourneyStepId };
+    case "#sources":
+      return { navLabel: "Sources", journeyStepId: "conclusion" as JourneyStepId };
+    case "#home":
+      return { navLabel: "Home" };
+    default:
+      return undefined;
+  }
+}
 
 export default function App() {
   const [visibleFilter, setVisibleFilter] = useState<RouteFilter>("all");
   const [selectedRouteId, setSelectedRouteId] = useState<RouteId>(initialRouteId);
   const [selectedLocationId, setSelectedLocationId] = useState(initialLocationId);
-  const [activeNavLabel, setActiveNavLabel] = useState("The Route");
-  const [activeJourneyStepId, setActiveJourneyStepId] =
-    useState<JourneyStepId>(initialJourneyStepId);
+  const [activeNavLabel, setActiveNavLabel] = useState(initialNavLabel);
+  const [activeJourneyStepId, setActiveJourneyStepId] = useState<JourneyStepId>(initialJourneyStepId);
 
   const selectedRoute = routeLookup[selectedRouteId];
   const selectedLocation =
     selectedRoute.locations.find((location) => location.id === selectedLocationId) ??
     selectedRoute.locations[0];
+
+  useEffect(() => {
+    function syncNavigationFromHash() {
+      const currentHash = window.location.hash;
+
+      if (!currentHash) {
+        return;
+      }
+
+      const nextState = resolveNavigationState(currentHash);
+
+      if (!nextState) {
+        return;
+      }
+
+      setActiveNavLabel(nextState.navLabel);
+
+      if (nextState.journeyStepId) {
+        setActiveJourneyStepId(nextState.journeyStepId);
+      }
+    }
+
+    syncNavigationFromHash();
+    window.addEventListener("hashchange", syncNavigationFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncNavigationFromHash);
+    };
+  }, []);
 
   function syncRouteSelection(routeId: RouteId, locationId?: string) {
     const route = routeLookup[routeId];
@@ -37,6 +87,8 @@ export default function App() {
 
   function handleFilterChange(filter: RouteFilter) {
     setVisibleFilter(filter);
+    setActiveNavLabel("The Route");
+    setActiveJourneyStepId("the-route");
 
     if (filter !== "all") {
       syncRouteSelection(filter);
@@ -48,10 +100,14 @@ export default function App() {
       (location) => location.id === selectedLocationId,
     );
 
+    setActiveNavLabel("The Route");
+    setActiveJourneyStepId("the-route");
     syncRouteSelection(routeId, activeLocationIsOnRoute ? selectedLocationId : undefined);
   }
 
   function handleLocationSelect(routeId: RouteId, locationId: string) {
+    setActiveNavLabel("The Route");
+    setActiveJourneyStepId("the-route");
     syncRouteSelection(routeId, locationId);
   }
 
@@ -66,16 +122,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <HeroHeader
-        journeySteps={journeySteps}
         activeNavLabel={activeNavLabel}
+        activeStepId={activeJourneyStepId}
+        journeySteps={journeySteps}
         onNavigate={handleHeroNavigate}
       />
 
       <main className="mx-auto max-w-[1720px] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
         <div className="grid gap-6 pt-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:gap-8 xl:pt-8">
           <JourneySidebar
-            steps={journeySteps}
             activeStepId={activeJourneyStepId}
+            steps={journeySteps}
             className="hidden lg:block"
           />
 
@@ -88,12 +145,12 @@ export default function App() {
               <div className="absolute -right-16 top-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(191,145,67,0.24),transparent_72%)]" />
 
               <div className="relative flex flex-col gap-5">
-                <div className="w-full">
+                <div className="max-w-3xl">
                   <p className="section-kicker">The Route</p>
-                  <h2 className="mt-3 w-full font-display text-4xl leading-none tracking-tight text-stone-950 sm:text-5xl xl:text-[4rem]">
+                  <h2 className="mt-3 max-w-4xl font-display text-4xl leading-none tracking-tight text-stone-950 sm:text-5xl xl:text-[4rem]">
                     Follow the forced paths west and trace where each nation was pushed.
                   </h2>
-                  <p className="mt-4 text-pretty text-sm leading-7 text-stone-700 sm:text-base">
+                  <p className="mt-4 max-w-2xl text-pretty text-sm leading-7 text-stone-700 sm:text-base">
                     Select a route or a location to move through the geography of removal. The map,
                     timeline, and narrative panel stay linked so the journey reads like a guided
                     historical atlas instead of a static diagram.
@@ -143,6 +200,8 @@ export default function App() {
                 }
 
                 setVisibleFilter("all");
+                setActiveNavLabel("The Route");
+                setActiveJourneyStepId("the-route");
                 syncRouteSelection(routeId);
               }}
             />
