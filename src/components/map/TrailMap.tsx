@@ -245,7 +245,7 @@ export function TrailMap({
       </div>
 
       <div className="grid gap-4 lg:gap-5">
-        <RouteLegend className="w-full sm:max-w-md" routes={routes} />
+        <RouteLegend className="w-full" routes={routes} />
         <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
           Approximate routes shown for educational context.
         </p>

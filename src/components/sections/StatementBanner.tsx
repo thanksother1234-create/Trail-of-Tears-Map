@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowDown, BookOpenText, Compass, Landmark } from "lucide-react";
 
+import { trailRoutes } from "@/data/trailData";
+
 export function StatementBanner() {
+  const sources = Array.from(
+    new Map(trailRoutes.flatMap((route) => route.sources).map((source) => [source.url, source]))
+      .values(),
+  );
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 24 }}
@@ -55,47 +62,24 @@ export function StatementBanner() {
         <div id="sources" className="bg-[#10201c] p-6 sm:p-8">
           <p className="section-kicker text-stone-400">Sources</p>
           <div className="mt-5 space-y-3 text-sm leading-6 text-stone-300">
-            <a
-              href="https://www.nps.gov/trte/index.htm"
-              target="_blank"
-              rel="noreferrer"
-              className="block rounded-[1.2rem] border border-white/8 bg-white/[0.04] px-4 py-3 transition hover:bg-white/[0.08]"
-            >
-              National Park Service Trail of Tears
-            </a>
-            <a
-              href="https://www.archives.gov/"
-              target="_blank"
-              rel="noreferrer"
-              className="block rounded-[1.2rem] border border-white/8 bg-white/[0.04] px-4 py-3 transition hover:bg-white/[0.08]"
-            >
-              National Archives collections
-            </a>
-            <a
-              href="https://www.loc.gov/"
-              target="_blank"
-              rel="noreferrer"
-              className="block rounded-[1.2rem] border border-white/8 bg-white/[0.04] px-4 py-3 transition hover:bg-white/[0.08]"
-            >
-              Library of Congress research materials
-            </a>
-          </div>
-
-          <div className="mt-6 flex gap-3 text-[#d5b471]">
-            <ArrowDown className="h-4 w-4" />
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-semibold uppercase tracking-[0.24em]">
-                Created by Riley Griffin : CC1030660 : rgriffin2650@collin.edu
-              </span>
+            {sources.map((source) => (
               <a
-                href="https://github.com/thanksother1234-create/Trail-of-Tears-Map"
+                key={source.url}
+                href={source.url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d5b471] underline decoration-[#d5b471]/30 hover:decoration-[#d5b471]"
+                className="block rounded-[1.2rem] border border-white/8 bg-white/[0.04] px-4 py-3 transition hover:bg-white/[0.08]"
               >
-                GitHub repository
+                {source.label}
               </a>
-            </div>
+            ))}
+          </div>
+
+          <div className="mt-6 flex items-center gap-3 text-[#d5b471]">
+            <ArrowDown className="h-4 w-4" />
+            <span className="text-xs font-semibold uppercase tracking-[0.24em]">
+              Scroll, then pick another route
+            </span>
           </div>
         </div>
       </div>
