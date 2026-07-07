@@ -1,12 +1,19 @@
+import { cn } from "@/lib/utils";
 import type { TrailRoute } from "@/types/trail";
 
 interface RouteLegendProps {
+  className?: string;
   routes: TrailRoute[];
 }
 
-export function RouteLegend({ routes }: RouteLegendProps) {
+export function RouteLegend({ className, routes }: RouteLegendProps) {
   return (
-    <div className="grid gap-3 rounded-[1.35rem] border border-stone-400/18 bg-white/90 p-4 shadow-[0_14px_35px_rgba(36,24,13,0.1)] backdrop-blur-xl sm:max-w-sm">
+    <div
+      className={cn(
+        "grid gap-3 rounded-[1.35rem] border border-stone-400/18 bg-white/90 p-4 shadow-[0_14px_35px_rgba(36,24,13,0.1)] backdrop-blur-xl sm:max-w-sm",
+        className,
+      )}
+    >
       <div className="space-y-1">
         <p className="section-kicker text-[0.64rem]">Route Key</p>
         <p className="text-xs uppercase tracking-[0.22em] text-stone-500">

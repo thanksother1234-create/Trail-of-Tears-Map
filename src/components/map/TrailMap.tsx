@@ -245,20 +245,15 @@ export function TrailMap({
               );
             })}
           </MapContainer>
-
-          <div className="pointer-events-none absolute bottom-5 left-5 z-[400] hidden md:block">
-            <RouteLegend routes={routes} />
-          </div>
         </div>
       </div>
 
-      <div className="md:hidden">
-        <RouteLegend routes={routes} />
+      <div className="grid gap-4 lg:gap-5">
+        <RouteLegend className="w-full sm:max-w-md" routes={routes} />
+        <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
+          Approximate routes shown for educational context.
+        </p>
       </div>
-
-      <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
-        Approximate routes shown for educational context.
-      </p>
     </div>
   );
 }
