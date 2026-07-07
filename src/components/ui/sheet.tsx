@@ -23,16 +23,23 @@ const SheetOverlay = React.forwardRef<
   />
 ));
 
+interface SheetContentProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+  side?: "left" | "right";
+}
+
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+  SheetContentProps
+>(({ className, children, side = "right", ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-y-0 right-0 z-50 flex h-full w-full max-w-md flex-col border-l border-white/10 bg-[#142420]/95 p-6 text-stone-100 shadow-2xl backdrop-blur-xl transition data-[state=open]:translate-x-0 data-[state=closed]:translate-x-full",
+        "fixed inset-y-0 z-50 flex h-full w-full max-w-md flex-col bg-[#142420]/95 p-6 text-stone-100 shadow-2xl backdrop-blur-xl transition data-[state=open]:translate-x-0",
+        side === "left"
+          ? "left-0 border-r border-white/10 data-[state=closed]:-translate-x-full"
+          : "right-0 border-l border-white/10 data-[state=closed]:translate-x-full",
         className,
       )}
       {...props}

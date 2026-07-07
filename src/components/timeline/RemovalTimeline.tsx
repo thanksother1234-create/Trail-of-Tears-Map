@@ -15,7 +15,7 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-2xl">
           <p className="section-kicker">Timeline of Removal</p>
-          <h3 className="mt-3 font-display text-4xl leading-none text-stone-950">
+          <h3 className="mt-3 font-display text-3xl leading-none text-stone-950 sm:text-4xl">
             Policy happened in stages, not in a single march.
           </h3>
         </div>
@@ -25,7 +25,7 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
         </p>
       </div>
 
-      <div className="relative mt-8 hidden lg:block">
+      <div className="relative mt-8 hidden xl:block">
         <div className="absolute left-0 right-0 top-5 h-px bg-stone-400/30" />
         <div className="grid grid-cols-6 gap-4">
           {events.map((event) => {
@@ -71,7 +71,7 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
         </div>
       </div>
 
-      <div className="mt-6 grid gap-3 lg:hidden">
+      <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:hidden">
         {events.map((event) => {
           const isActive = event.id === activeEventId;
 
@@ -84,7 +84,11 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
                   : "border-stone-400/14 bg-white/56"
               }`}
             >
-              <button type="button" className="w-full text-left" onClick={() => onEventSelect(event.routeId)}>
+              <button
+                type="button"
+                className="w-full text-left"
+                onClick={() => onEventSelect(event.routeId)}
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.26em] text-stone-500">
                   {event.year}
                 </p>

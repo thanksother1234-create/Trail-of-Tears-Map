@@ -130,11 +130,11 @@ export default function App() {
       />
 
       <main className="mx-auto max-w-[1720px] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
-        <div className="grid gap-6 pt-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:gap-8 xl:pt-8">
+        <div className="grid gap-6 pt-6 xl:grid-cols-[320px_minmax(0,1fr)] xl:gap-8 xl:pt-8">
           <JourneySidebar
             activeStepId={activeJourneyStepId}
             steps={journeySteps}
-            className="hidden lg:block"
+            className="hidden xl:block"
           />
 
           <section className="min-w-0 space-y-6 xl:space-y-8">
@@ -156,6 +156,15 @@ export default function App() {
                     timeline, and narrative panel stay linked so the journey reads like a guided
                     historical atlas instead of a static diagram.
                   </p>
+
+                  <div className="mt-4 rounded-[1.45rem] border border-stone-400/14 bg-[#f8f2e6]/92 p-4 xl:hidden">
+                    <p className="section-kicker text-[0.62rem]">Mobile reading tip</p>
+                    <p className="mt-2 text-sm leading-6 text-stone-700">
+                      Open the menu in the upper left for the journey guide and section links,
+                      rotate to landscape if you want a wider map, and scroll below the map to
+                      reach the location panel and the full timeline.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.24em] text-stone-600">

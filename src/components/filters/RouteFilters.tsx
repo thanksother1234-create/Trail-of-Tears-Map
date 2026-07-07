@@ -26,7 +26,7 @@ export function RouteFilters({
   ];
 
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
       {items.map((item) => {
         const isActive = visibleFilter === item.id;
 
@@ -36,7 +36,7 @@ export function RouteFilters({
             type="button"
             variant="ghost"
             onClick={() => onFilterChange(item.id)}
-            className={`relative overflow-hidden border px-4 ${
+            className={`relative w-full justify-center overflow-hidden border px-4 sm:w-auto ${
               isActive
                 ? "border-stone-500/25 text-stone-950"
                 : "border-stone-400/18 bg-white/55 text-stone-700 hover:text-stone-950"
