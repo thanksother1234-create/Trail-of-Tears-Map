@@ -36,14 +36,9 @@ const indianTerritoryOutline: LatLngTuple[] = [
 
 const indianTerritoryLabelIcon = divIcon({
   className: "indian-territory-label",
-  html: `
-    <div class="indian-territory-label__frame">
-      <span class="indian-territory-label__eyebrow">Present-day Oklahoma</span>
-      <span class="indian-territory-label__title">Indian Territory</span>
-    </div>
-  `,
-  iconAnchor: [88, 34],
-  iconSize: [176, 68],
+  html: '<span class="indian-territory-label__title">Indian Territory</span>',
+  iconAnchor: [72, 12],
+  iconSize: [144, 24],
 });
 
 function MapViewport({ routes }: { routes: TrailRoute[] }) {

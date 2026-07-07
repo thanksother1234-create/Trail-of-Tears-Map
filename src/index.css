@@ -146,36 +146,19 @@ a {
 .indian-territory-label {
   background: transparent;
   border: none;
-}
-
-.indian-territory-label__frame {
-  display: grid;
-  gap: 0.3rem;
-  min-width: 10.5rem;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid rgba(93, 108, 79, 0.28);
-  border-radius: 1rem;
-  background: rgba(246, 250, 238, 0.9);
-  box-shadow:
-    0 12px 26px rgba(54, 44, 22, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-}
-
-.indian-territory-label__eyebrow {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #6f7960;
+  white-space: nowrap;
 }
 
 .indian-territory-label__title {
+  display: inline-block;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1;
-  letter-spacing: 0.02em;
-  color: #26311f;
+  letter-spacing: 0.03em;
+  color: rgba(47, 60, 38, 0.9);
+  text-shadow:
+    0 1px 0 rgba(255, 252, 244, 0.9),
+    0 0 10px rgba(255, 248, 234, 0.5);
 }
 
 @media (max-width: 1023px) {
@@ -183,12 +166,7 @@ a {
     font-size: 0.625rem;
   }
 
-  .indian-territory-label__frame {
-    min-width: 9rem;
-    padding: 0.65rem 0.8rem;
-  }
-
   .indian-territory-label__title {
-    font-size: 1.05rem;
+    font-size: 1.08rem;
   }
 }
