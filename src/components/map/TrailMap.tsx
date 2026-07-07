@@ -36,14 +36,9 @@ const indianTerritoryOutline: LatLngTuple[] = [
 
 const indianTerritoryLabelIcon = divIcon({
   className: "indian-territory-label",
-  html: `
-    <div class="indian-territory-label__frame">
-      <span class="indian-territory-label__eyebrow">Present-day Oklahoma</span>
-      <span class="indian-territory-label__title">Indian Territory</span>
-    </div>
-  `,
-  iconAnchor: [88, 34],
-  iconSize: [176, 68],
+  html: '<span class="indian-territory-label__title">Indian Territory</span>',
+  iconAnchor: [72, 12],
+  iconSize: [144, 24],
 });
 
 function MapViewport({ routes }: { routes: TrailRoute[] }) {
@@ -192,6 +187,7 @@ export function TrailMap({
             zoom={5}
             minZoom={4}
             maxZoom={8}
+            preferCanvas={true}
             zoomControl={false}
             scrollWheelZoom={false}
             className="h-[500px] w-full sm:h-[580px] xl:h-[640px]"
@@ -245,20 +241,15 @@ export function TrailMap({
               );
             })}
           </MapContainer>
-
-          <div className="pointer-events-none absolute bottom-5 left-5 z-[400] hidden md:block">
-            <RouteLegend routes={routes} />
-          </div>
         </div>
       </div>
 
-      <div className="md:hidden">
-        <RouteLegend routes={routes} />
+      <div className="grid gap-4 lg:gap-5">
+        <RouteLegend className="w-full sm:max-w-md" routes={routes} />
+        <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
+          Approximate routes shown for educational context.
+        </p>
       </div>
-
-      <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
-        Approximate routes shown for educational context.
-      </p>
     </div>
   );
 }
