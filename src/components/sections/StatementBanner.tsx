@@ -3,10 +3,60 @@ import { ArrowDown, BookOpenText, Compass, Landmark } from "lucide-react";
 
 import { trailRoutes } from "@/data/trailData";
 
+const sourceLabelOverrides: Record<string, string> = {
+  "cherokee.org": "Cherokee Nation",
+  "chickasaw.net": "Chickasaw Nation",
+  "choctawnation.com": "Choctaw Nation",
+  "ftking.org": "Fort King Heritage Foundation",
+  "muscogeenation.com": "The Muscogee Nation",
+  "nps.gov": "National Park Service",
+  "sno-nsn.gov": "The Seminole Nation of Oklahoma",
+};
+
+function getSourceSiteKey(url: string) {
+  return new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+}
+
+function getSourceSiteHomePage(url: string) {
+  const parsed = new URL(url);
+
+  return `${parsed.protocol}//${parsed.hostname}/`;
+}
+
+function getSourceSiteLabel(siteKey: string, fallbackLabel: string) {
+  return (
+    sourceLabelOverrides[siteKey] ??
+    fallbackLabel
+      .replace(/:\s.*$/, "")
+      .replace(/\s+(History|Historical Documents|Removal)$/i, "")
+      .trim()
+  );
+}
+
 export function StatementBanner() {
+  const routeSources = trailRoutes.flatMap((route) => route.sources);
+  const sourceCountsBySite = routeSources.reduce((counts, source) => {
+    const siteKey = getSourceSiteKey(source.url);
+
+    counts.set(siteKey, (counts.get(siteKey) ?? 0) + 1);
+    return counts;
+  }, new Map<string, number>());
+
   const sources = Array.from(
-    new Map(trailRoutes.flatMap((route) => route.sources).map((source) => [source.url, source]))
-      .values(),
+    new Map(
+      routeSources.map((source) => {
+        const siteKey = getSourceSiteKey(source.url);
+        const useHomePage = (sourceCountsBySite.get(siteKey) ?? 0) > 1;
+        const normalizedSource = useHomePage
+          ? {
+              label: getSourceSiteLabel(siteKey, source.label),
+              url: getSourceSiteHomePage(source.url),
+            }
+          : source;
+
+        return [normalizedSource.url, normalizedSource] as const;
+      }),
+    ).values(),
   );
 
   return (
@@ -78,7 +128,7 @@ export function StatementBanner() {
           <div className="mt-6 flex items-center gap-3 text-[#d5b471]">
             <ArrowDown className="h-4 w-4" />
             <span className="text-xs font-semibold uppercase tracking-[0.24em]">
-              Scroll, then pick another route
+              Riley Griffin : CC1030660
             </span>
           </div>
         </div>
