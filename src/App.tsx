@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { RouteFilters } from "@/components/filters/RouteFilters";
 import { HeroHeader } from "@/components/layout/HeroHeader";
 import { JourneySidebar } from "@/components/layout/JourneySidebar";
@@ -8,7 +9,7 @@ import { StatementBanner } from "@/components/sections/StatementBanner";
 import { RemovalTimeline } from "@/components/timeline/RemovalTimeline";
 import { journeySteps, routeLookup, routeOrder, timelineEvents, trailRoutes } from "@/data/trailData";
 import type { JourneyStepId, RouteFilter, RouteId } from "@/types/trail";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 const initialRouteId: RouteId = "cherokee";
 const initialLocationId = routeLookup[initialRouteId].locations[0]?.id ?? "";
@@ -146,12 +147,12 @@ export default function App() {
               <div className="absolute -right-16 top-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(191,145,67,0.24),transparent_72%)]" />
 
               <div className="relative flex flex-col gap-5">
-                <div className="w-full">
+                <div className="max-w-3xl">
                   <p className="section-kicker">The Route</p>
-                  <h2 className="mt-3 w-full font-display text-4xl leading-none tracking-tight text-stone-950 sm:text-5xl xl:text-[4rem]">
+                  <h2 className="mt-3 max-w-4xl font-display text-4xl leading-none tracking-tight text-stone-950 sm:text-5xl xl:text-[4rem]">
                     Follow the forced paths west and trace where each nation was pushed.
                   </h2>
-                  <p className="mt-4 text-pretty text-sm leading-7 text-stone-700 sm:text-base">
+                  <p className="mt-4 max-w-2xl text-pretty text-sm leading-7 text-stone-700 sm:text-base">
                     Select a route or a location to move through the geography of removal. The map,
                     timeline, and narrative panel stay linked so the journey reads like a guided
                     historical atlas instead of a static diagram.

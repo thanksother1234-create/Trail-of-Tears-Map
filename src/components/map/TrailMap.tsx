@@ -187,6 +187,7 @@ export function TrailMap({
             zoom={5}
             minZoom={4}
             maxZoom={8}
+            preferCanvas={true}
             zoomControl={false}
             scrollWheelZoom={false}
             className="h-[500px] w-full sm:h-[580px] xl:h-[640px]"
