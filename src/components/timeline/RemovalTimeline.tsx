@@ -25,8 +25,8 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
         </p>
       </div>
 
-      <div className="relative mt-8 hidden xl:block">
-        <div className="absolute left-0 right-0 top-5 h-px bg-stone-400/30" />
+      <div className="relative mt-8 hidden 2xl:block">
+        <div className="absolute inset-x-6 top-[2.55rem] h-px bg-stone-400/30" />
         <div className="grid grid-cols-6 gap-4">
           {events.map((event) => {
             const isActive = event.id === activeEventId;
@@ -36,17 +36,17 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
                 key={event.id}
                 type="button"
                 onClick={() => onEventSelect(event.routeId)}
-                className="group relative text-left"
+                className="group flex h-full flex-col text-left"
               >
-                <div className="relative mb-6 h-10">
-                  <div className="absolute left-0 top-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-stone-500">
+                <div className="mb-6 flex min-h-14 flex-col items-center px-3 text-center">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-stone-500">
                     {event.year}
                   </div>
-                  <div className="absolute left-0 top-5 h-4 w-4 rounded-full border border-stone-400/30 bg-[#f2eadb]">
+                  <div className="mt-3 flex h-4 w-4 items-center justify-center rounded-full border border-stone-400/30 bg-[#f2eadb]">
                     {isActive ? (
                       <motion.span
                         layoutId="timeline-dot"
-                        className="absolute inset-[2px] rounded-full bg-[#6b40ab]"
+                        className="h-[0.62rem] w-[0.62rem] rounded-full bg-[#6b40ab]"
                         transition={{ type: "spring", duration: 0.45, bounce: 0.25 }}
                       />
                     ) : null}
@@ -54,7 +54,7 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
                 </div>
 
                 <div
-                  className={`rounded-[1.4rem] border px-4 py-4 transition ${
+                  className={`flex-1 rounded-[1.4rem] border px-4 py-4 transition ${
                     isActive
                       ? "border-stone-500/20 bg-white/82 shadow-[0_12px_28px_rgba(42,29,17,0.08)]"
                       : "border-transparent bg-transparent group-hover:border-stone-400/14 group-hover:bg-white/48"
@@ -71,7 +71,7 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
         </div>
       </div>
 
-      <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:hidden">
+      <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:hidden">
         {events.map((event) => {
           const isActive = event.id === activeEventId;
 
