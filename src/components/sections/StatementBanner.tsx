@@ -126,7 +126,6 @@ export function StatementBanner() {
           </div>
 
           <div className="mt-6 flex items-center gap-3 text-[#d5b471]">
-            <ArrowDown className="h-4 w-4" />
             <span className="text-xs font-semibold uppercase tracking-[0.24em]">
               Riley Griffin : CC1030660
             </span>
