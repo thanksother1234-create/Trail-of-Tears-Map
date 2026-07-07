@@ -55,7 +55,7 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
                   <div className="flex items-center gap-2 text-stone-500">
                     <CalendarDays className="h-4 w-4" />
                     <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em]">
-                      Year
+                      Years
                     </span>
                   </div>
                   <p className="mt-3 font-display text-2xl text-stone-950">{location.year}</p>
