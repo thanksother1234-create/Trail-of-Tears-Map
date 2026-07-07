@@ -10,7 +10,7 @@ export function RouteLegend({ className, routes }: RouteLegendProps) {
   return (
     <div
       className={cn(
-        "grid gap-3 rounded-[1.35rem] border border-stone-400/18 bg-white/95 p-4 shadow-[0_14px_35px_rgba(36,24,13,0.1)] sm:max-w-sm",
+        "grid w-full gap-3 rounded-[1.35rem] border border-stone-400/18 bg-white/95 p-4 shadow-[0_14px_35px_rgba(36,24,13,0.1)]",
         className,
       )}
     >
