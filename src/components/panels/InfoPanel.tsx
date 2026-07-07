@@ -38,7 +38,9 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
                   >
                     {route.label}
                   </Badge>
-                  <CardTitle className="text-3xl leading-none text-stone-950">{location.title}</CardTitle>
+                  <CardTitle className="text-2xl leading-none text-stone-950 sm:text-3xl">
+                    {location.title}
+                  </CardTitle>
                   <p className="mt-3 text-sm leading-6 text-stone-600">{location.subtitle}</p>
                 </div>
 
@@ -50,7 +52,7 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 text-sm text-stone-700">
+              <div className="grid grid-cols-1 gap-3 text-sm text-stone-700 sm:grid-cols-2">
                 <div className="rounded-[1.25rem] border border-stone-400/16 bg-white/64 p-3">
                   <div className="flex items-center gap-2 text-stone-500">
                     <CalendarDays className="h-4 w-4" />

@@ -37,6 +37,20 @@ export function HeroHeader({
       <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
 
       <div className="relative mx-auto max-w-[1720px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div className="mb-5 flex items-center justify-between gap-4 xl:hidden">
+          <MobileJourneySheet
+            activeNavLabel={activeNavLabel}
+            activeStepId={activeStepId}
+            navLinks={navLinks}
+            onNavigate={onNavigate}
+            steps={journeySteps}
+          />
+
+          <div className="rounded-full border border-white/12 bg-white/8 px-3 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.26em] text-stone-200">
+            {activeNavLabel}
+          </div>
+        </div>
+
         <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -69,10 +83,8 @@ export function HeroHeader({
             </div>
           </motion.div>
 
-          <div className="flex items-start gap-4">
-            <MobileJourneySheet activeStepId={activeStepId} steps={journeySteps} />
-
-            <nav className="hidden max-w-[42rem] flex-wrap justify-end gap-x-6 gap-y-3 text-sm text-stone-200 lg:flex">
+          <div className="hidden items-start gap-4 xl:flex">
+            <nav className="max-w-[42rem] flex-wrap justify-end gap-x-6 gap-y-3 text-sm text-stone-200 xl:flex">
               {navLinks.map((link) => (
                 <a
                   key={link.label}

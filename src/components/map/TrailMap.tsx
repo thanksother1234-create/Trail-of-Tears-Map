@@ -190,7 +190,7 @@ export function TrailMap({
             preferCanvas={true}
             zoomControl={false}
             scrollWheelZoom={false}
-            className="h-[500px] w-full sm:h-[580px] xl:h-[640px]"
+            className="h-[340px] w-full sm:h-[430px] md:h-[520px] xl:h-[640px]"
           >
             <TileLayer
               attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
