@@ -124,13 +124,7 @@ export const trailRoutes: TrailRoute[] = [
       "Choctaw removal began immediately after the 1830 Treaty of Dancing Rabbit Creek and unfolded in several forced waves.",
     displacement: "From Mississippi across the Arkansas corridor into the Choctaw Nation in Indian Territory.",
     featuredEventId: "choctaw-removal",
-    sources: [
-      { label: "Choctaw Nation History", url: "https://www.choctawnation.com/about/history/" },
-      {
-        label: "Choctaw Nation Historical Documents",
-        url: "https://www.choctawnation.com/about/history/historical-documents/",
-      },
-    ],
+    sources: [{ label: "Choctaw Nation", url: "https://www.choctawnation.com/" }],
     lineCoordinates: [
       [32.78, -89.48],
       [33.18, -90.08],
@@ -188,13 +182,7 @@ export const trailRoutes: TrailRoute[] = [
     displacement:
       "From northern Mississippi through the Memphis corridor into the Chickasaw district in Indian Territory.",
     featuredEventId: "chickasaw-removal",
-    sources: [
-      { label: "Chickasaw Nation History", url: "https://chickasaw.net/Our-Nation/History.aspx" },
-      {
-        label: "Chickasaw Nation Removal",
-        url: "https://chickasaw.net/Our-Nation/History/Removal.aspx",
-      },
-    ],
+    sources: [{ label: "Chickasaw Nation", url: "https://chickasaw.net/" }],
     lineCoordinates: [
       [34.24, -88.99],
       [34.82, -89.54],
