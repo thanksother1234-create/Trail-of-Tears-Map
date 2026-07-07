@@ -53,7 +53,7 @@ export const trailRoutes: TrailRoute[] = [
     featuredEventId: "cherokee-removal",
     sources: [
       { label: "National Park Service", url: "https://www.nps.gov/trte/index.htm" },
-      { label: "Library of Congress", url: "https://www.loc.gov/" },
+      { label: "Cherokee Nation History", url: "https://cherokee.org/about-the-nation/history/" },
     ],
     lineCoordinates: [
       [34.44, -85.72],
@@ -121,12 +121,15 @@ export const trailRoutes: TrailRoute[] = [
     label: "Choctaw Route",
     color: "#d8a130",
     overview:
-      "Choctaw removal began earlier than the Cherokee removals and unfolded in waves under the Treaty of Dancing Rabbit Creek.",
-    displacement: "From Mississippi across Arkansas into the Choctaw Nation in Indian Territory.",
+      "Choctaw removal began immediately after the 1830 Treaty of Dancing Rabbit Creek and unfolded in several forced waves.",
+    displacement: "From Mississippi across the Arkansas corridor into the Choctaw Nation in Indian Territory.",
     featuredEventId: "choctaw-removal",
     sources: [
-      { label: "Oklahoma Historical Society", url: "https://www.okhistory.org/" },
-      { label: "National Archives", url: "https://www.archives.gov/" },
+      { label: "Choctaw Nation History", url: "https://www.choctawnation.com/about/history/" },
+      {
+        label: "Choctaw Nation Historical Documents",
+        url: "https://www.choctawnation.com/about/history/historical-documents/",
+      },
     ],
     lineCoordinates: [
       [32.78, -89.48],
@@ -152,15 +155,15 @@ export const trailRoutes: TrailRoute[] = [
           "It stands as a central legal turning point, where federal pressure converted homeland into negotiable property.",
       },
       {
-        id: "arkansas-post",
-        title: "Arkansas Post, Arkansas",
-        subtitle: "Crossing and supply route",
+        id: "arkansas-crossing",
+        title: "Arkansas Crossing, Arkansas",
+        subtitle: "River and road corridor",
         year: "1831 to 1833",
         coordinates: [34.02, -91.34],
         description:
-          "Choctaw parties crossed swampy, flood-prone country while facing hunger, disease, and weather exposure.",
+          "Choctaw parties crossed flood-prone Arkansas country while facing hunger, disease, and exposure as removal unfolded in waves.",
         significance:
-          "Reports from these stages describe the devastating combination of poor planning and severe environmental conditions.",
+          "This stop represents the Arkansas corridor of removal rather than a single camp, emphasizing how crossings, weather, and logistics shaped the journey.",
       },
       {
         id: "fort-towson",
@@ -181,12 +184,16 @@ export const trailRoutes: TrailRoute[] = [
     label: "Chickasaw Route",
     color: "#4d8c58",
     overview:
-      "Chickasaw removal followed land cession agreements and financial arrangements that still ended in forced dislocation.",
-    displacement: "From northern Mississippi through Arkansas toward the Chickasaw Nation in the west.",
+      "Chickasaw removal followed land sale and treaty negotiations, but it still forced families west under the 1837 Treaty of Doaksville.",
+    displacement:
+      "From northern Mississippi through the Memphis corridor into the Chickasaw district in Indian Territory.",
     featuredEventId: "chickasaw-removal",
     sources: [
-      { label: "National Park Service", url: "https://www.nps.gov/trte/index.htm" },
-      { label: "Oklahoma Historical Society", url: "https://www.okhistory.org/" },
+      { label: "Chickasaw Nation History", url: "https://chickasaw.net/Our-Nation/History.aspx" },
+      {
+        label: "Chickasaw Nation Removal",
+        url: "https://chickasaw.net/Our-Nation/History/Removal.aspx",
+      },
     ],
     lineCoordinates: [
       [34.24, -88.99],
@@ -202,18 +209,18 @@ export const trailRoutes: TrailRoute[] = [
       {
         id: "pontotoc",
         title: "Pontotoc, Mississippi",
-        subtitle: "Chickasaw homeland center",
+        subtitle: "Homeland center and treaty-era crossroads",
         year: "1837",
         coordinates: [34.24, -88.99],
         description:
-          "Negotiations over sale and removal disrupted Chickasaw communities rooted in northern Mississippi.",
+          "Negotiations over land sale and westward movement disrupted Chickasaw communities rooted in northern Mississippi.",
         significance:
           "The Chickasaw experience shows how cash settlements and treaty mechanisms still produced coercive removal.",
       },
       {
         id: "memphis-corridor",
-        title: "Memphis Corridor",
-        subtitle: "Transit bottleneck",
+        title: "Memphis Crossing",
+        subtitle: "Mississippi River corridor",
         year: "1837 to 1838",
         coordinates: [35.15, -90.05],
         description:
@@ -222,15 +229,15 @@ export const trailRoutes: TrailRoute[] = [
           "Transport infrastructure shaped who moved, when they moved, and how vulnerable detachments were along the way.",
       },
       {
-        id: "tishomingo",
-        title: "Tishomingo, Indian Territory",
-        subtitle: "Reestablished political center",
-        year: "Late 1830s",
+        id: "chickasaw-district",
+        title: "Chickasaw District, Indian Territory",
+        subtitle: "Initial resettlement in the west",
+        year: "1837 to 1838",
         coordinates: [34.23, -96.68],
         description:
-          "In the west, the Chickasaw rebuilt institutions and community life under radically altered circumstances.",
+          "Chickasaw families entered a district purchased within Choctaw Territory and began rebuilding under radically altered conditions.",
         significance:
-          "Removal ended one geography and forced the creation of another, with long-term consequences for governance and kinship.",
+          "This avoids treating later Tishomingo as an 1830s removal stop; the westward journey ended first in a broader Chickasaw district before later political centers emerged.",
       },
     ],
   },
@@ -240,12 +247,16 @@ export const trailRoutes: TrailRoute[] = [
     label: "Creek Route",
     color: "#2472b0",
     overview:
-      "Creek removal intensified after war, federal intervention, and escalating settler pressure in Alabama and Georgia.",
-    displacement: "From central Alabama and western Georgia to the Creek Nation in Indian Territory.",
+      "Muscogee removal accelerated after internal division, land cessions, and the Creek War of 1836.",
+    displacement:
+      "From Georgia and Alabama, through Montgomery, toward western settlements in Indian Territory.",
     featuredEventId: "creek-removal",
     sources: [
-      { label: "National Archives", url: "https://www.archives.gov/" },
-      { label: "Library of Congress", url: "https://www.loc.gov/" },
+      {
+        label: "National Park Service: The Muscogee Nation",
+        url: "https://www.nps.gov/ocmu/learn/historyculture/the-muscogee-nation.htm",
+      },
+      { label: "The Muscogee Nation", url: "https://www.muscogeenation.com/" },
     ],
     lineCoordinates: [
       [32.46, -84.99],
@@ -261,35 +272,35 @@ export const trailRoutes: TrailRoute[] = [
     ],
     locations: [
       {
-        id: "columbus",
-        title: "Columbus, Georgia",
-        subtitle: "Eastern pressure line",
+        id: "lower-creek-country",
+        title: "Lower Creek Country, Georgia",
+        subtitle: "Eastern homeland under pressure",
         year: "1836",
         coordinates: [32.46, -84.99],
         description:
-          "Creek communities near the Georgia border faced military action, land hunger, and mounting removal pressure.",
+          "Communities along the Georgia-Alabama line faced escalating land loss, violence, and state pressure as removal intensified.",
         significance:
-          "The Creek route shows how removal was intertwined with warfare, incarceration, and settler occupation.",
+          "This stop represents the eastern Muscogee homeland under direct pressure rather than a single camp, making the geography of dispossession clearer.",
       },
       {
         id: "montgomery",
         title: "Montgomery, Alabama",
-        subtitle: "Military corridor",
+        subtitle: "Barge loading point",
         year: "1836",
         coordinates: [32.38, -86.31],
         description:
-          "Federal forces organized transport and confinement around Alabama corridors that pushed Creek families westward.",
+          "After the Creek War of 1836, many Muscogee people were marched to Montgomery and crowded onto barges in extreme summer heat.",
         significance:
           "Removal infrastructure ran through existing military and political hubs, linking policy directly to enforcement.",
       },
       {
-        id: "muskogee",
-        title: "Muskogee Region, Indian Territory",
-        subtitle: "Creek resettlement",
-        year: "Late 1830s",
+        id: "creek-nation-west",
+        title: "Creek Nation, Indian Territory",
+        subtitle: "Western resettlement",
+        year: "1836 to 1837",
         coordinates: [35.75, -95.37],
         description:
-          "Survivors arrived in a new western landscape where government, landholding, and social life had to be reconstructed.",
+          "Survivors reached western settlements after a long journey by foot and water and began rebuilding political and social life.",
         significance:
           "Resettlement did not erase the violence of removal; it extended it into every question of rebuilding community.",
       },
@@ -301,13 +312,16 @@ export const trailRoutes: TrailRoute[] = [
     label: "Seminole Route",
     color: "#c84c38",
     overview:
-      "Seminole removal unfolded through war, capture, detention, and maritime transport, making it one of the most violent and prolonged campaigns of removal.",
+      "Seminole removal unfolded through the Second Seminole War, capture, detention, and maritime transport, making it one of the longest and most violent removal campaigns.",
     displacement:
-      "From central Florida to Fort Brooke on Tampa Bay, then by Gulf transport to New Orleans and onward toward Fort Gibson in Indian Territory.",
+      "From central Florida to Fort Brooke on Tampa Bay, then by ship across the Gulf Coast corridor toward New Orleans and on to Indian Territory.",
     featuredEventId: "seminole-removal",
     sources: [
-      { label: "Florida Memory", url: "https://www.floridamemory.com/" },
-      { label: "National Park Service", url: "https://www.nps.gov/trte/index.htm" },
+      {
+        label: "Fort King Heritage Foundation",
+        url: "https://ftking.org/the-three-seminole-wars/",
+      },
+      { label: "The Seminole Nation of Oklahoma", url: "https://www.sno-nsn.gov/" },
     ],
     lineCoordinates: [
       [29.19, -82.14],
@@ -331,10 +345,10 @@ export const trailRoutes: TrailRoute[] = [
         id: "fort-king",
         title: "Fort King, Florida",
         subtitle: "Flashpoint of conflict",
-        year: "1830s",
+        year: "1835",
         coordinates: [29.19, -82.14],
         description:
-          "Fort King became a symbol of federal pressure and military occupation in Seminole homelands.",
+          "Fort King became a major flashpoint when violence at and around the post helped ignite the Second Seminole War in late 1835.",
         significance:
           "For the Seminole, removal cannot be separated from the Second Seminole War and the violence of resistance.",
       },
@@ -342,23 +356,23 @@ export const trailRoutes: TrailRoute[] = [
         id: "fort-brooke",
         title: "Fort Brooke, Tampa Bay",
         subtitle: "Embarkation point",
-        year: "1835 to 1842",
+        year: "1837 to 1842",
         coordinates: [27.95, -82.46],
         description:
-          "Seminoles gathered or were forced through military posts and then sent to Tampa Bay, where transports carried many of them toward New Orleans.",
+          "Captured Seminoles were brought to Tampa Bay for detention and transport west during the later years of the war.",
         significance:
           "This stop helps explain why the route crosses the Gulf: part of the removal happened by ship, not by an uninterrupted land march.",
       },
       {
-        id: "new-orleans",
-        title: "New Orleans, Louisiana",
-        subtitle: "Gulf transfer hub",
-        year: "1830s to 1840s",
+        id: "gulf-transfer",
+        title: "Gulf Transfer via New Orleans",
+        subtitle: "Maritime and river corridor",
+        year: "1837 to 1842",
         coordinates: [29.95, -90.07],
         description:
-          "Captured or detained Seminoles moved through New Orleans after Gulf transport from Florida before continuing west through river and overland corridors.",
+          "Some westbound transports moved by sea to Louisiana and then into inland corridors leading toward Indian Territory.",
         significance:
-          "This corridor reveals how ports, maritime transport, detention, and military logistics overlapped in the machinery of removal.",
+          "This is shown as a transfer corridor rather than a simple overland stop, which is why the route crosses the Gulf.",
       },
       {
         id: "fort-gibson",
@@ -367,7 +381,7 @@ export const trailRoutes: TrailRoute[] = [
         year: "1842",
         coordinates: [35.8, -95.25],
         description:
-          "Seminole removal concluded unevenly, with some people forced west while others remained in Florida.",
+          "Removal concluded unevenly, with many Seminoles forced west toward Indian Territory while others remained in Florida.",
         significance:
           "The Seminole story complicates any simple endpoint and shows the limits of federal power even amid extreme violence.",
       },
