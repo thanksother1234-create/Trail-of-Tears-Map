@@ -40,19 +40,27 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
     setStatusMessage("");
 
     try {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 12000);
       const response = await fetch("/api/feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        signal: controller.signal,
         body: JSON.stringify({
           message: trimmedFeedback,
           routeLabel: selectedRouteLabel,
           page: window.location.hash || "#route",
         }),
       });
+      window.clearTimeout(timeoutId);
 
       const result = (await response.json().catch(() => null)) as { error?: string } | null;
+
+      if (response.status === 404) {
+        throw new Error("The feedback API is not available on this deployment yet.");
+      }
 
       if (!response.ok) {
         throw new Error(result?.error ?? "Unable to submit feedback right now.");
@@ -64,9 +72,11 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
     } catch (error) {
       setSubmitState("error");
       setStatusMessage(
-        error instanceof Error
-          ? error.message
-          : "Unable to submit feedback right now. Please try again later.",
+        error instanceof DOMException && error.name === "AbortError"
+          ? "The feedback request timed out. Check that BLOB_READ_WRITE_TOKEN is configured and redeploy the project."
+          : error instanceof Error
+            ? error.message
+            : "Unable to submit feedback right now. Please try again later.",
       );
     }
   }
