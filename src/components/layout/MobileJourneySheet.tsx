@@ -72,10 +72,6 @@ export function MobileJourneySheet({
         <SheetHeader className="pr-10">
           <p className="section-kicker text-stone-400">Navigation</p>
           <SheetTitle>Open the journey, the sections, and the route notes in one place.</SheetTitle>
-          <SheetDescription>
-            On phones and tablets, this menu keeps the full project within reach without squeezing
-            the map and timeline into a desktop layout.
-          </SheetDescription>
         </SheetHeader>
 
         <ScrollArea className="mt-6 h-[calc(100vh-12.5rem)] pr-3">
