@@ -37,7 +37,7 @@ export function HeroHeader({
       <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
       <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent,rgba(7,11,10,0.34))]" />
 
-      <div className="relative mx-auto max-w-[1720px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      <div className="relative mx-auto w-full max-w-[1920px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8 xl:px-10 2xl:px-12">
         <div className="mb-5 flex items-center justify-between gap-4 xl:hidden">
           <MobileJourneySheet
             activeNavLabel={activeNavLabel}
