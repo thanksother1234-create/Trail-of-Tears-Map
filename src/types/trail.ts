@@ -51,6 +51,7 @@ export interface TimelineEvent {
   title: string;
   summary: string;
   routeId?: RouteId;
+  locationId?: string;
 }
 
 export interface JourneyStep {

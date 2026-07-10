@@ -201,7 +201,7 @@ export default function App() {
             <RemovalTimeline
               events={timelineEvents}
               activeEventId={selectedRoute.featuredEventId}
-              onEventSelect={(routeId) => {
+              onEventSelect={(routeId, locationId) => {
                 if (!routeId) {
                   return;
                 }
@@ -209,7 +209,7 @@ export default function App() {
                 setVisibleFilter("all");
                 setActiveNavLabel("The Route");
                 setActiveJourneyStepId("the-route");
-                syncRouteSelection(routeId);
+                syncRouteSelection(routeId, locationId);
               }}
             />
 

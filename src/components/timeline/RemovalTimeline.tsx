@@ -4,7 +4,7 @@ import type { RouteId, TimelineEvent } from "@/types/trail";
 interface RemovalTimelineProps {
   events: TimelineEvent[];
   activeEventId: string;
-  onEventSelect: (routeId?: RouteId) => void;
+  onEventSelect: (routeId?: RouteId, locationId?: string) => void;
 }
 
 export function RemovalTimeline({ events, activeEventId, onEventSelect }: RemovalTimelineProps) {
@@ -35,7 +35,7 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
                   <button
                     key={event.id}
                     type="button"
-                    onClick={() => onEventSelect(event.routeId)}
+                    onClick={() => onEventSelect(event.routeId, event.locationId)}
                     className="group flex h-full w-[min(82vw,20rem)] shrink-0 snap-start flex-col text-left xl:w-auto"
                   >
                     <div className="mb-6 flex min-h-14 flex-col items-start px-3">
