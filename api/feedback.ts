@@ -19,6 +19,14 @@ function normalizeString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function normalizeBoolean(value: string | undefined, fallback = false) {
+  if (!value) {
+    return fallback;
+  }
+
+  return ["1", "true", "yes", "on"].includes(value.trim().toLowerCase());
+}
+
 function getBlobWriteAccess(request?: Request) {
   const feedbackStoreId = process.env.FEEDBACK_BLOB_STORE_ID?.trim();
   const defaultStoreId = process.env.BLOB_STORE_ID?.trim();
@@ -45,8 +53,108 @@ function getBlobWriteAccess(request?: Request) {
   };
 }
 
+function getDiscordAlertConfig() {
+  const webhookUrl = process.env.DISCORD_FEEDBACK_WEBHOOK_URL?.trim() || "";
+  const forumMode = normalizeBoolean(process.env.DISCORD_FEEDBACK_FORUM_MODE, true);
+  const forumTagIds = (process.env.DISCORD_FEEDBACK_FORUM_TAG_IDS || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  return {
+    webhookUrl,
+    forumMode,
+    forumTagIds,
+    isConfigured: Boolean(webhookUrl),
+  };
+}
+
+function buildDiscordThreadName(entry: {
+  routeLabel: string;
+  submittedAt: string;
+}) {
+  const timestamp = entry.submittedAt.slice(0, 16).replace("T", " ");
+  const rawName = `${entry.routeLabel || "Feedback"} - ${timestamp} UTC`;
+
+  return rawName.length <= 100 ? rawName : `${rawName.slice(0, 97)}...`;
+}
+
+async function sendFeedbackAlert(entry: {
+  message: string;
+  page: string;
+  routeLabel: string;
+  submittedAt: string;
+  userAgent: string;
+  blobPath: string;
+}) {
+  const discordConfig = getDiscordAlertConfig();
+
+  if (!discordConfig.isConfigured) {
+    return { sent: false, skipped: true };
+  }
+
+  const response = await fetch(`${discordConfig.webhookUrl}?wait=true`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: "Trail Feedback",
+      ...(discordConfig.forumMode ? { thread_name: buildDiscordThreadName(entry) } : {}),
+      ...(discordConfig.forumMode && discordConfig.forumTagIds.length
+        ? { applied_tags: discordConfig.forumTagIds }
+        : {}),
+      allowed_mentions: {
+        parse: [],
+      },
+      embeds: [
+        {
+          title: "New content feedback submitted",
+          color: 6170469,
+          description: entry.message,
+          fields: [
+            {
+              name: "Route",
+              value: entry.routeLabel || "Unknown route",
+              inline: true,
+            },
+            {
+              name: "Page",
+              value: entry.page || "#route",
+              inline: true,
+            },
+            {
+              name: "Submitted",
+              value: entry.submittedAt,
+              inline: false,
+            },
+            {
+              name: "Stored at",
+              value: `\`${entry.blobPath}\``,
+              inline: false,
+            },
+            {
+              name: "User agent",
+              value: entry.userAgent || "Unavailable",
+              inline: false,
+            },
+          ],
+        },
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Discord webhook failed (${response.status}): ${errorText}`);
+  }
+
+  return { sent: true, skipped: false };
+}
+
 export function GET(request: Request) {
   const blobAccess = getBlobWriteAccess(request);
+  const discordAlertConfig = getDiscordAlertConfig();
 
   return Response.json({
     ok: true,
@@ -58,6 +166,9 @@ export function GET(request: Request) {
         ? "oidc"
         : "missing",
     variablePrefix: blobAccess.variablePrefix,
+    discordConfigured: discordAlertConfig.isConfigured,
+    discordForumMode: discordAlertConfig.forumMode,
+    discordForumTagCount: discordAlertConfig.forumTagIds.length,
   });
 }
 
@@ -102,10 +213,11 @@ export async function POST(request: Request) {
     submittedAt: new Date().toISOString(),
     userAgent: request.headers.get("user-agent") ?? "",
   };
+  const feedbackBlobPath = `feedback/${Date.now()}-${crypto.randomUUID()}.json`;
 
   try {
     await put(
-      `feedback/${Date.now()}-${crypto.randomUUID()}.json`,
+      feedbackBlobPath,
       JSON.stringify(entry, null, 2),
       {
         access: "private",
@@ -125,6 +237,15 @@ export async function POST(request: Request) {
       },
       503,
     );
+  }
+
+  try {
+    await sendFeedbackAlert({
+      ...entry,
+      blobPath: feedbackBlobPath,
+    });
+  } catch (error) {
+    console.error("Discord feedback alert failed after the feedback was saved.", error);
   }
 
   return jsonResponse({ message: "Feedback submitted." }, 200);
