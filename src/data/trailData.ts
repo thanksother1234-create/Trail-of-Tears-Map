@@ -555,5 +555,6 @@ export const timelineEvents: TimelineEvent[] = [
     summary:
       "The Second Seminole War ended in 1842, but later removals continued into the 1850s as Seminole resistance endured.",
     routeId: "seminole",
+    locationId: "fort-gibson",
   },
 ];
