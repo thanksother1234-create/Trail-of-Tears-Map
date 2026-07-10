@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowDown, BookOpenText, Landmark } from "lucide-react";
+import { BookOpenText, Landmark } from "lucide-react";
 
+import favicon from "../../../assets/favicon.png";
 import { trailRoutes } from "@/data/trailData";
 
 export function StatementBanner() {
@@ -95,7 +96,12 @@ export function StatementBanner() {
           </div>
 
           <div className="mt-6 flex items-center gap-3 text-[#d5b471]">
-            <ArrowDown className="h-4 w-4" />
+            <img
+              src={favicon}
+              alt=""
+              aria-hidden="true"
+              className="h-5 w-5 rounded-sm object-contain"
+            />
             <span className="text-xs font-semibold uppercase tracking-[0.24em]">
               Project by Riley Griffin : CC1030660
             </span>
