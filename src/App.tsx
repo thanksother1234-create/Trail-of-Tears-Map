@@ -187,7 +187,7 @@ export default function App() {
                     Linked map, timeline, and panel
                   </span>
                   <span className="rounded-full border border-stone-400/30 bg-white/65 px-4 py-2">
-                    1830 to 1842
+                    1830 to the 1850s
                   </span>
                 </div>
 

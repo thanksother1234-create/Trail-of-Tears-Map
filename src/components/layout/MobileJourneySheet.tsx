@@ -6,6 +6,7 @@ import {
   journeyGuideYears,
   journeyQuote,
   journeyQuoteAttribution,
+  journeyQuoteSourceUrl,
 } from "@/data/trailData";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -161,13 +162,14 @@ export function MobileJourneySheet({
                 {journeyQuote}
               </p>
               <p className="mt-4 text-sm leading-6 text-stone-300">{journeyQuoteAttribution}</p>
-              <p className="mt-4 text-xs uppercase tracking-[0.28em] text-stone-400">
-                Mobile reading note
-              </p>
-              <p className="mt-3 text-sm leading-6 text-stone-300">
-                Rotate to landscape for a wider view of the trails, then scroll below the map for
-                the route panel, the swipeable timeline, the sources, and the feedback form.
-              </p>
+              <a
+                href={journeyQuoteSourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-block text-sm font-medium text-stone-200 underline decoration-stone-500 underline-offset-4 transition hover:text-white"
+              >
+                Read the full message
+              </a>
             </div>
           </div>
         </ScrollArea>
