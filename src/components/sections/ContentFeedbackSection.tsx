@@ -24,7 +24,7 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
       return statusMessage;
     }
 
-    return "Flag route details, dates, wording, or sources that seem off. Submissions include the current route for context.";
+    return "Flag route details, dates, wording, or sources that seem off. Submissions include the current route for context. This feedback will be posted to a discord channel and I will get to an issues when I can.";
   }, [statusMessage, submitState]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {

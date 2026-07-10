@@ -82,14 +82,11 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
 
         <div className="mt-5 rounded-[1.6rem] border border-stone-400/14 bg-[linear-gradient(180deg,rgba(237,229,213,0.96),rgba(233,223,204,0.92))] p-5">
           <p className="font-display text-[1.55rem] italic leading-8 text-stone-900">
-            "What looks tidy on a map was lived as rupture, waiting, marching, rebuilding, and loss."
+            “The removal of the Indians beyond the white settlements is necessary for their own
+            good and for the permanent prosperity of ours.”
           </p>
-          <p className="mt-4 text-xs uppercase tracking-[0.28em] text-stone-500">
-            Reading note
-          </p>
-          <p className="mt-3 text-sm leading-6 text-stone-700">
-            The lines on this page are simplified routes. The experience they stand in for was far
-            messier, longer, and more painful than any single path can fully show.
+          <p className="mt-4 text-sm leading-6 text-stone-700">
+            - President Andrew Jackson, 1830
           </p>
         </div>
       </div>
