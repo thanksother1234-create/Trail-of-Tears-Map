@@ -5,8 +5,8 @@ export const journeyGuideDescription =
   "Move through the sections in order if you want the page to feel less like an exhibit label and more like a lived sequence of policy, confinement, transport, and survival.";
 export const journeyGuideYears = "1830 to 1842";
 export const journeyQuote =
-  '"The removal of the Indians beyond the white settlements is necessary for their own good and for the permanent prosperity of ours."';
-export const journeyQuoteAttribution = "- President Andrew Jackson, 1830";
+  '"It will place a dense and civilized population in large tracts of country now occupied by a few savage hunters."';
+export const journeyQuoteAttribution = "- Andrew Jackson, Second Annual Message to Congress, December 6, 1830";
 
 export const routeOrder: RouteId[] = [
   "cherokee",
