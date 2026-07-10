@@ -1,5 +1,12 @@
 import { Flag, Landmark, Menu, Route, Scale, Users } from "lucide-react";
 
+import {
+  journeyGuideDescription,
+  journeyGuideTitle,
+  journeyGuideYears,
+  journeyQuote,
+  journeyQuoteAttribution,
+} from "@/data/trailData";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -98,60 +105,62 @@ export function MobileJourneySheet({
               </div>
             </div>
 
-            <div>
-              <p className="section-kicker text-[0.64rem] text-stone-400">Journey guide</p>
-              <p className="mt-2 text-sm leading-6 text-stone-300">
-                Use this menu on smaller screens to keep the map tied to policy, detention,
-                logistics, resistance, and the human cost of removal.
-              </p>
+            <div className="rounded-[1.6rem] border border-white/8 bg-[#101a18] p-5">
+              <p className="section-kicker text-stone-400">The Journey</p>
+              <h2 className="mt-3 font-display text-3xl leading-none text-white">
+                {journeyGuideTitle}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-stone-300">{journeyGuideDescription}</p>
+              <div className="mt-5 inline-flex rounded-full border border-white/10 bg-white/8 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-stone-200">
+                {journeyGuideYears}
+              </div>
             </div>
 
             <div className="space-y-4">
-            {steps.map((step, index) => {
-              const Icon = iconMap[step.icon];
-              const isActive = step.id === activeStepId;
-              const stepLink = navLinks.find((link) => link.journeyStepId === step.id);
-              const href = stepLink?.href ?? "#route";
-              const navLabel = navLabelByStepId[step.id];
+              {steps.map((step, index) => {
+                const Icon = iconMap[step.icon];
+                const isActive = step.id === activeStepId;
+                const stepLink = navLinks.find((link) => link.journeyStepId === step.id);
+                const href = stepLink?.href ?? "#route";
+                const navLabel = navLabelByStepId[step.id];
 
-              return (
-                <SheetClose
-                  key={step.id}
-                  asChild
-                >
-                  <a
-                    href={href}
-                    onClick={() => onNavigate(navLabel, step.id)}
-                    className={`block rounded-[1.5rem] border px-4 py-4 ${
-                      isActive
-                        ? "border-white/12 bg-white/12"
-                        : "border-white/8 bg-white/[0.04] text-stone-200"
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/8">
-                        <Icon className="h-4 w-4" />
-                      </div>
+                return (
+                  <SheetClose key={step.id} asChild>
+                    <a
+                      href={href}
+                      onClick={() => onNavigate(navLabel, step.id)}
+                      className={`block rounded-[1.5rem] border px-4 py-4 ${
+                        isActive
+                          ? "border-white/12 bg-white/12"
+                          : "border-white/8 bg-white/[0.04] text-stone-200"
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/8">
+                          <Icon className="h-4 w-4" />
+                        </div>
 
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-stone-400">
-                          {index + 1}
-                        </p>
-                        <h3 className="mt-2 font-display text-2xl text-white">{step.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-stone-300">{step.description}</p>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-stone-400">
+                            {index + 1}
+                          </p>
+                          <h3 className="mt-2 font-display text-2xl text-white">{step.title}</h3>
+                          <p className="mt-2 text-sm leading-6 text-stone-300">
+                            {step.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </SheetClose>
-              );
-            })}
+                    </a>
+                  </SheetClose>
+                );
+              })}
             </div>
 
             <div className="rounded-[1.6rem] border border-white/8 bg-[#101a18] p-5">
               <p className="font-display text-2xl italic leading-8 text-stone-100">
-                "This was not a migration by choice. It was policy carried out through pressure,
-                detention, transport, and force."
+                {journeyQuote}
               </p>
+              <p className="mt-4 text-sm leading-6 text-stone-300">{journeyQuoteAttribution}</p>
               <p className="mt-4 text-xs uppercase tracking-[0.28em] text-stone-400">
                 Mobile reading note
               </p>

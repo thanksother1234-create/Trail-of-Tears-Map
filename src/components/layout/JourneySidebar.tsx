@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
 import { Flag, Landmark, Route, Scale, Users } from "lucide-react";
 
+import {
+  journeyGuideDescription,
+  journeyGuideTitle,
+  journeyGuideYears,
+  journeyQuote,
+  journeyQuoteAttribution,
+} from "@/data/trailData";
 import { cn } from "@/lib/utils";
 import type { JourneyStep, JourneyStepId } from "@/types/trail";
 
@@ -24,13 +31,10 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
       <div className="paper-panel overflow-hidden rounded-[2rem] p-6">
         <div className="rounded-[1.6rem] border border-stone-400/18 bg-[#152722] px-5 py-6 text-stone-50 shadow-[0_14px_36px_rgba(20,28,24,0.22)]">
           <p className="section-kicker text-stone-300">The Journey</p>
-          <h2 className="mt-3 font-display text-4xl leading-none">A guided reading path</h2>
-          <p className="mt-4 text-sm leading-7 text-stone-200/88">
-            Move through the sections in order if you want the page to feel less like an exhibit
-            label and more like a lived sequence of policy, confinement, transport, and survival.
-          </p>
+          <h2 className="mt-3 font-display text-4xl leading-none">{journeyGuideTitle}</h2>
+          <p className="mt-4 text-sm leading-7 text-stone-200/88">{journeyGuideDescription}</p>
           <div className="mt-5 inline-flex rounded-full border border-white/10 bg-white/8 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-stone-200">
-            1830 to 1842
+            {journeyGuideYears}
           </div>
         </div>
 
@@ -82,12 +86,9 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
 
         <div className="mt-5 rounded-[1.6rem] border border-stone-400/14 bg-[linear-gradient(180deg,rgba(237,229,213,0.96),rgba(233,223,204,0.92))] p-5">
           <p className="font-display text-[1.55rem] italic leading-8 text-stone-900">
-            “The removal of the Indians beyond the white settlements is necessary for their own
-            good and for the permanent prosperity of ours.”
+            {journeyQuote}
           </p>
-          <p className="mt-4 text-sm leading-6 text-stone-700">
-            - President Andrew Jackson, 1830
-          </p>
+          <p className="mt-4 text-sm leading-6 text-stone-700">{journeyQuoteAttribution}</p>
         </div>
       </div>
     </aside>
