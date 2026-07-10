@@ -98,15 +98,8 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
                 <p className="section-kicker text-[0.64rem] text-stone-600">How to read this route</p>
                 <div className="mt-3 rounded-[1.4rem] border border-stone-400/16 bg-[#f7f1e5]/82 p-4">
                   <p className="text-sm leading-7 text-stone-800">{route.readingLens}</p>
+                  <p className="mt-3 text-sm leading-7 text-stone-700">{route.displacement}</p>
                 </div>
-              </div>
-
-              <Separator />
-
-              <div>
-                <p className="section-kicker text-[0.64rem] text-stone-600">Route overview</p>
-                <p className="mt-3 text-sm leading-7 text-stone-700">{route.overview}</p>
-                <p className="mt-3 text-sm leading-7 text-stone-700">{route.displacement}</p>
               </div>
 
               <Separator />
