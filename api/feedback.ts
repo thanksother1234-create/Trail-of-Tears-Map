@@ -19,12 +19,13 @@ function normalizeString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function getBlobWriteAccess() {
+function getBlobWriteAccess(request?: Request) {
   const feedbackStoreId = process.env.FEEDBACK_BLOB_STORE_ID?.trim();
   const defaultStoreId = process.env.BLOB_STORE_ID?.trim();
   const feedbackReadWriteToken = process.env.FEEDBACK_BLOB_READ_WRITE_TOKEN?.trim();
   const defaultReadWriteToken = process.env.BLOB_READ_WRITE_TOKEN?.trim();
-  const oidcToken = process.env.VERCEL_OIDC_TOKEN?.trim();
+  const oidcTokenFromHeader = request?.headers.get("x-vercel-oidc-token")?.trim();
+  const oidcToken = oidcTokenFromHeader || process.env.VERCEL_OIDC_TOKEN?.trim();
 
   const storeId = feedbackStoreId || defaultStoreId || "";
   const readWriteToken = feedbackReadWriteToken || defaultReadWriteToken || "";
@@ -44,8 +45,8 @@ function getBlobWriteAccess() {
   };
 }
 
-export function GET() {
-  const blobAccess = getBlobWriteAccess();
+export function GET(request: Request) {
+  const blobAccess = getBlobWriteAccess(request);
 
   return Response.json({
     ok: true,
@@ -61,7 +62,7 @@ export function GET() {
 }
 
 export async function POST(request: Request) {
-  const blobAccess = getBlobWriteAccess();
+  const blobAccess = getBlobWriteAccess(request);
 
   if (!blobAccess.isConfigured) {
     return jsonResponse(
