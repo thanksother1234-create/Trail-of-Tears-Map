@@ -63,9 +63,9 @@ export const trailRoutes: TrailRoute[] = [
     label: "Cherokee Route",
     color: "#6b40ab",
     overview:
-      "The Cherokee detachments of 1838 and 1839 became the most widely remembered image of the Trail of Tears, though even this route was a braided system of stockades, roads, rivers, and rail transfers.",
+      "The Cherokee detachments of 1838 and 1839 became the most widely remembered image of the Trail of Tears. The map separates three documented corridors rather than combining departure points and travel modes into one imagined march.",
     readingLens:
-      "Notice how the best-known route is still not one clean line. The violence began in confinement and continued through transport, weather, disease, and shortage.",
+      "Choose a corridor to see why the Trail of Tears was not one clean line: the water route, northern land route, and Benge detachment began in different places and followed different paths. The violence began in confinement and continued through transport, weather, disease, and shortage.",
     displacement:
       "From Cherokee homelands in Georgia, Alabama, and Tennessee toward the reconstituted Cherokee Nation in Indian Territory.",
     featuredEventId: "cherokee-removal",
@@ -76,18 +76,60 @@ export const trailRoutes: TrailRoute[] = [
       },
       { label: "Cherokee Nation History", url: "https://cherokee.org/about-the-nation/history/" },
     ],
-    lineCoordinates: [
-      [34.44, -85.72],
-      [35.05, -85.31],
-      [35.64, -86.24],
-      [35.84, -87.18],
-      [35.55, -88.78],
-      [35.14, -90.03],
-      [35.08, -91.28],
-      [34.75, -92.29],
-      [35.22, -92.61],
-      [35.58, -93.9],
-      [35.92, -94.97],
+    routeLines: [
+      {
+        id: "cherokee-water",
+        label: "Water route from Ross's Landing",
+        transport: "water",
+        coordinates: [
+          [35.05, -85.31],
+          [35.62, -86.55],
+          [36.35, -87.8],
+          [37.0, -88.75],
+          [37.0, -89.15],
+          [35.14, -90.03],
+          [34.02, -91.35],
+          [34.75, -92.29],
+          [35.3, -93.1],
+          [35.4, -94.42],
+          [35.8, -95.25],
+        ],
+      },
+      {
+        id: "cherokee-northern",
+        label: "Northern land-route corridor from Fort Cass",
+        transport: "land",
+        coordinates: [
+          [35.32, -84.79],
+          [36.05, -85.65],
+          [36.72, -87.55],
+          [37.0, -88.5],
+          [37.0, -89.15],
+          [36.35, -90.42],
+          [35.7, -91.35],
+          [35.5, -92.55],
+          [35.62, -93.85],
+          [35.92, -94.97],
+        ],
+      },
+      {
+        id: "cherokee-benge",
+        label: "Benge detachment corridor from Fort Payne",
+        transport: "land",
+        coordinates: [
+          [34.44, -85.72],
+          [34.85, -86.38],
+          [35.35, -87.18],
+          [35.9, -88.0],
+          [36.76, -88.95],
+          [36.76, -89.12],
+          [36.05, -90.15],
+          [35.58, -91.25],
+          [35.45, -92.48],
+          [35.65, -93.8],
+          [35.92, -94.97],
+        ],
+      },
     ],
     locations: [
       {
@@ -144,7 +186,7 @@ export const trailRoutes: TrailRoute[] = [
     overview:
       "Choctaw removal began almost immediately after the Treaty of Dancing Rabbit Creek, making it one of the earliest large forced removals under the new policy.",
     readingLens:
-      "This route helps show that removal was already underway years before the Cherokee detachments fixed the phrase 'Trail of Tears' in public memory.",
+      "This selected southern corridor helps show that removal was already underway years before the Cherokee detachments fixed the phrase 'Trail of Tears' in public memory. Other Choctaw parties used different land and water routes.",
     displacement:
       "From Mississippi across river and road corridors in Arkansas toward the Choctaw Nation in Indian Territory.",
     featuredEventId: "choctaw-removal",
@@ -153,17 +195,28 @@ export const trailRoutes: TrailRoute[] = [
         label: "Choctaw Nation: Choctaw Removals",
         url: "https://www.choctawnation.com/news/iti-fabvssa/choctaw-removals/",
       },
+      {
+        label: "Arkansas Heritage: Choctaw removal routes",
+        url: "https://www.arkansasheritage.com/docs/default-source/ahpp-documents/state-wide-historic-contexts/indianremoval_new_202074840604-102a-4668-90b9-e78126c2ef92.pdf?sfvrsn=e22ecd76_5",
+      },
     ],
-    lineCoordinates: [
-      [32.78, -89.48],
-      [33.18, -90.08],
-      [33.62, -91.03],
-      [34.02, -91.34],
-      [33.94, -92.05],
-      [34.16, -93.16],
-      [34.16, -94.18],
-      [34.03, -95.27],
-      [34.62, -95.93],
+    routeLines: [
+      {
+        id: "choctaw-southern",
+        label: "Selected southern removal corridor",
+        transport: "mixed",
+        coordinates: [
+          [32.78, -89.48],
+          [33.18, -90.08],
+          [33.74, -91.2],
+          [34.02, -91.35],
+          [34.75, -92.29],
+          [34.42, -92.85],
+          [34.22, -93.45],
+          [34.1, -94.2],
+          [34.03, -95.27],
+        ],
+      },
     ],
     locations: [
       {
@@ -179,14 +232,14 @@ export const trailRoutes: TrailRoute[] = [
       },
       {
         id: "arkansas-crossing",
-        title: "Arkansas Crossing, Arkansas",
-        subtitle: "River and road corridor",
+        title: "Arkansas Post, Arkansas",
+        subtitle: "Southern-route staging area",
         year: "1831 to 1833",
         coordinates: [34.02, -91.34],
         description:
-          "Choctaw parties crossed flood-prone Arkansas country while facing hunger, disease, and exposure as removal unfolded in waves.",
+          "Early Choctaw removal parties used the Arkansas Post area as they moved through Arkansas by a combination of river and road corridors.",
         significance:
-          "This stop represents the Arkansas corridor of removal rather than a single camp, emphasizing how crossings, weather, and logistics shaped the journey.",
+          "The 1831 southern route moved from Arkansas Post toward Little Rock, while later parties followed other corridors. This marker identifies a documented staging area, not one universal crossing.",
       },
       {
         id: "fort-towson",
@@ -209,22 +262,29 @@ export const trailRoutes: TrailRoute[] = [
     overview:
       "Chickasaw removal moved through treaty negotiation and land sale, but the softer language of agreement still ended in coerced westward displacement.",
     readingLens:
-      "Read this route for the way legal agreement and coercion worked together. Payment and paperwork did not make removal voluntary.",
+      "Read this route as a representative land-and-river corridor, not a survey-accurate track for every Chickasaw family. Payment and paperwork did not make removal voluntary.",
     displacement:
       "From northern Mississippi through the Memphis corridor into the Chickasaw district in Indian Territory.",
     featuredEventId: "chickasaw-removal",
     sources: [
       { label: "Chickasaw Nation: Removal", url: "https://chickasaw.net/Our-Nation/History/Removal.aspx" },
     ],
-    lineCoordinates: [
-      [34.24, -88.99],
-      [34.82, -89.54],
-      [35.15, -90.05],
-      [34.73, -90.92],
-      [34.6, -92.01],
-      [34.38, -93.17],
-      [34.27, -94.46],
-      [34.23, -96.68],
+    routeLines: [
+      {
+        id: "chickasaw-corridor",
+        label: "Representative land-and-river corridor",
+        transport: "mixed",
+        coordinates: [
+          [34.24, -88.99],
+          [34.82, -89.54],
+          [35.15, -90.05],
+          [34.73, -90.92],
+          [34.6, -92.01],
+          [34.38, -93.17],
+          [34.27, -94.46],
+          [34.23, -96.68],
+        ],
+      },
     ],
     locations: [
       {
@@ -252,13 +312,13 @@ export const trailRoutes: TrailRoute[] = [
       {
         id: "chickasaw-district",
         title: "Chickasaw District, Indian Territory",
-        subtitle: "Initial resettlement in the west",
+        subtitle: "Regional destination marker",
         year: "1837 onward",
         coordinates: [34.23, -96.68],
         description:
-          "Beginning in 1837, Chickasaw families entered a district purchased within Choctaw Territory and began rebuilding under radically altered conditions.",
+          "This marker represents the broader Chickasaw District purchased within Choctaw Territory, where Chickasaw families began rebuilding under radically altered conditions.",
         significance:
-          "This avoids treating later Tishomingo as an 1830s removal stop. Most Chickasaw removals continued through 1851, even as the district became a place of rebuilding.",
+          "It is a regional destination marker rather than a claim that every party arrived at one town. Most Chickasaw removals continued through 1851, even as the district became a place of rebuilding.",
       },
     ],
   },
@@ -270,7 +330,7 @@ export const trailRoutes: TrailRoute[] = [
     overview:
       "For the Muscogee (Creek), removal intensified through war, imprisonment, and barge transport after the violence of 1836.",
     readingLens:
-      "This route makes the machinery of enforcement especially visible: military defeat, confinement, summer heat, transport, and forced rebuilding in the west.",
+      "This selected route follows the major 1836 water corridor: detention near Montgomery, travel through Mobile and New Orleans, then north by the Mississippi and Arkansas Rivers. Other Muscogee parties used related but different routes.",
     displacement:
       "From Georgia and Alabama, through Montgomery and river transport corridors, toward western settlements in Indian Territory.",
     featuredEventId: "creek-removal",
@@ -279,18 +339,33 @@ export const trailRoutes: TrailRoute[] = [
         label: "National Park Service: The Muscogee Nation",
         url: "https://www.nps.gov/ocmu/learn/historyculture/the-muscogee-nation.htm",
       },
+      {
+        label: "USACE: Creek removal routes through Arkansas",
+        url: "https://www.mvm.usace.army.mil/Portals/51/docs/Cultural%20Resources/Final_Report_1_15_08.pdf",
+      },
     ],
-    lineCoordinates: [
-      [32.46, -84.99],
-      [32.28, -85.72],
-      [32.38, -86.31],
-      [32.28, -86.76],
-      [32.35, -87.86],
-      [32.62, -89.02],
-      [33.34, -90.22],
-      [34.28, -91.98],
-      [35.02, -93.54],
-      [35.75, -95.37],
+    routeLines: [
+      {
+        id: "creek-water",
+        label: "Major 1836 water-route corridor",
+        transport: "water",
+        coordinates: [
+          [32.46, -84.99],
+          [32.38, -86.31],
+          [31.0, -87.2],
+          [30.69, -88.04],
+          [29.95, -90.07],
+          [30.45, -91.14],
+          [32.3, -90.9],
+          [33.25, -91.18],
+          [34.02, -91.35],
+          [34.75, -92.29],
+          [35.3, -93.1],
+          [35.4, -94.42],
+          [35.8, -95.25],
+          [35.75, -95.37],
+        ],
+      },
     ],
     locations: [
       {
@@ -336,7 +411,7 @@ export const trailRoutes: TrailRoute[] = [
     overview:
       "Seminole removal was bound to the Second Seminole War and often moved through capture, detention, and water transport rather than a single overland march.",
     readingLens:
-      "The water crossing is intentional. For many Seminoles, removal moved through Tampa Bay and Gulf transport, showing that the geography of expulsion was not only roads.",
+      "The water crossing is intentional. This selected corridor follows Tampa Bay and Gulf transport to New Orleans, then the Mississippi and Arkansas Rivers toward Fort Gibson. Other Seminole removals followed different schedules and transfers.",
     displacement:
       "From central Florida to Fort Brooke on Tampa Bay, then by ship across the Gulf Coast corridor toward New Orleans and onward to Indian Territory.",
     featuredEventId: "seminole-removal",
@@ -349,23 +424,36 @@ export const trailRoutes: TrailRoute[] = [
         label: "National Park Service: Seminole Incarceration",
         url: "https://www.nps.gov/casa/learn/historyculture/seminole-incarceration.htm",
       },
+      {
+        label: "Arkansas State Parks: Seminole water route",
+        url: "https://www.arkansas.com/plan-your-trip/plan/trip-ideas-itineraries/trail-of-tears-across-arkansas-state-parks",
+      },
     ],
-    lineCoordinates: [
-      [29.19, -82.14],
-      [27.95, -82.46],
-      [28.4, -83.2],
-      [29.1, -84.2],
-      [29.82, -85.22],
-      [30.23, -86.62],
-      [30.42, -87.22],
-      [30.69, -88.04],
-      [29.95, -90.07],
-      [30.45, -91.14],
-      [31.31, -92.45],
-      [32.53, -93.75],
-      [33.66, -94.18],
-      [34.69, -94.82],
-      [35.8, -95.25],
+    routeLines: [
+      {
+        id: "seminole-water",
+        label: "Water-route corridor to Fort Gibson",
+        transport: "water",
+        coordinates: [
+          [29.19, -82.14],
+          [27.95, -82.46],
+          [28.4, -83.2],
+          [29.1, -84.2],
+          [29.82, -85.22],
+          [30.23, -86.62],
+          [30.42, -87.22],
+          [30.69, -88.04],
+          [29.95, -90.07],
+          [30.45, -91.14],
+          [32.3, -90.9],
+          [33.25, -91.18],
+          [34.02, -91.35],
+          [34.75, -92.29],
+          [35.3, -93.1],
+          [35.4, -94.42],
+          [35.8, -95.25],
+        ],
+      },
     ],
     locations: [
       {

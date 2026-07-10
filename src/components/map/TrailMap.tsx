@@ -14,7 +14,7 @@ import {
 import { divIcon, latLngBounds, type LatLngTuple } from "leaflet";
 
 import { RouteLegend } from "@/components/map/RouteLegend";
-import type { RouteFilter, RouteId, TrailRoute } from "@/types/trail";
+import type { RouteFilter, RouteId, RouteLine, TrailRoute } from "@/types/trail";
 
 interface TrailMapProps {
   routes: TrailRoute[];
@@ -45,7 +45,7 @@ function MapViewport({ routes }: { routes: TrailRoute[] }) {
   const map = useMap();
 
   useEffect(() => {
-    const coordinates = routes.flatMap((route) => route.lineCoordinates);
+    const coordinates = routes.flatMap((route) => route.routeLines.flatMap((line) => line.coordinates));
 
     if (coordinates.length === 0) {
       return;
@@ -99,6 +99,7 @@ interface HistoricalRouteLineProps {
   isSelected: boolean;
   isVisibleAlone: boolean;
   onRouteSelect: (routeId: RouteId) => void;
+  line: RouteLine;
   route: TrailRoute;
 }
 
@@ -106,6 +107,7 @@ function HistoricalRouteLine({
   isSelected,
   isVisibleAlone,
   onRouteSelect,
+  line,
   route,
 }: HistoricalRouteLineProps) {
   const outerOpacity = isVisibleAlone ? 0.92 : isSelected ? 0.9 : 0.8;
@@ -115,7 +117,7 @@ function HistoricalRouteLine({
     <>
       <Polyline
         interactive={false}
-        positions={route.lineCoordinates}
+        positions={line.coordinates}
         pathOptions={{
           color: "#f8f1df",
           lineCap: "round",
@@ -126,21 +128,23 @@ function HistoricalRouteLine({
       />
       <Polyline
         interactive={false}
-        positions={route.lineCoordinates}
+        positions={line.coordinates}
         pathOptions={{
           color: route.color,
           lineCap: "round",
           lineJoin: "round",
+          dashArray: line.transport === "water" ? "10 8" : undefined,
           opacity: routeOpacity,
           weight: isSelected ? 7.1 : 5.25,
         }}
       />
       <Polyline
-        positions={route.lineCoordinates}
+        positions={line.coordinates}
         pathOptions={{
           color: "#fff6e4",
           lineCap: "round",
           lineJoin: "round",
+          dashArray: line.transport === "water" ? "10 8" : undefined,
           opacity: isVisibleAlone ? 0.34 : isSelected ? 0.32 : 0.18,
           weight: isSelected ? 1.6 : 1.2,
         }}
@@ -205,12 +209,16 @@ export function TrailMap({
 
               return (
                 <Fragment key={route.id}>
-                  <HistoricalRouteLine
-                    isSelected={isSelected}
-                    isVisibleAlone={visibleFilter !== "all"}
-                    onRouteSelect={onRouteSelect}
-                    route={route}
-                  />
+                  {route.routeLines.map((line) => (
+                    <HistoricalRouteLine
+                      key={line.id}
+                      isSelected={isSelected}
+                      isVisibleAlone={visibleFilter !== "all"}
+                      line={line}
+                      onRouteSelect={onRouteSelect}
+                      route={route}
+                    />
+                  ))}
 
                   {route.locations.map((location) => {
                     const isLocationSelected = selectedLocationId === location.id;
@@ -247,7 +255,7 @@ export function TrailMap({
       <div className="grid gap-4 lg:gap-5">
         <RouteLegend className="w-full" routes={routes} />
         <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
-          Approximate route corridors shown for educational context a line does not represent one continuous journey by every person.
+          Schematic, approximate corridors for educational context. A line does not represent one continuous journey by every person; dashed segments indicate water travel.
         </p>
       </div>
     </div>

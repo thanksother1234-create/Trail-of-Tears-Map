@@ -24,6 +24,13 @@ export interface RouteLocation {
   significance: string;
 }
 
+export interface RouteLine {
+  id: string;
+  label: string;
+  transport: "land" | "water" | "mixed";
+  coordinates: [number, number][];
+}
+
 export interface TrailRoute {
   id: RouteId;
   tribe: string;
@@ -34,7 +41,7 @@ export interface TrailRoute {
   displacement: string;
   featuredEventId: string;
   sources: SourceLink[];
-  lineCoordinates: [number, number][];
+  routeLines: RouteLine[];
   locations: RouteLocation[];
 }
 
