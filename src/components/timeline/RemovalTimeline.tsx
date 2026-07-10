@@ -23,11 +23,11 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
         </p>
       </div>
 
-      <div className="mt-8 overflow-x-auto pb-2">
-        <div className="min-w-[1020px] px-1 pb-1">
+      <div className="-mx-5 mt-8 overflow-x-auto px-5 pb-3 sm:-mx-7 sm:px-7 xl:mx-0 xl:overflow-visible xl:px-0 xl:pb-0">
+        <div className="w-max min-w-full px-1 pb-1 xl:w-full">
           <div className="relative">
             <div className="absolute inset-x-6 top-[2.55rem] h-px bg-stone-400/30" />
-            <div className="grid grid-cols-6 gap-4">
+            <div className="flex snap-x snap-mandatory gap-4 xl:grid xl:grid-cols-6 xl:snap-none">
               {events.map((event) => {
                 const isActive = event.id === activeEventId;
 
@@ -36,7 +36,7 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
                     key={event.id}
                     type="button"
                     onClick={() => onEventSelect(event.routeId)}
-                    className="group flex h-full flex-col text-left"
+                    className="group flex h-full w-[min(82vw,20rem)] shrink-0 snap-start flex-col text-left xl:w-auto"
                   >
                     <div className="mb-6 flex min-h-14 flex-col items-start px-3">
                       <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-stone-500">
