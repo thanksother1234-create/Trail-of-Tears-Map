@@ -120,7 +120,6 @@ export function MobileJourneySheet({
             <div className="space-y-4">
               {steps.map((step, index) => {
                 const Icon = iconMap[step.icon];
-                const isActive = step.id === activeStepId;
                 const stepLink = navLinks.find((link) => link.journeyStepId === step.id);
                 const href = stepLink?.href ?? "#route";
                 const navLabel = navLabelByStepId[step.id];
@@ -130,11 +129,7 @@ export function MobileJourneySheet({
                     <a
                       href={href}
                       onClick={() => onNavigate(navLabel, step.id)}
-                      className={`block rounded-[1.5rem] border px-4 py-4 ${
-                        isActive
-                          ? "border-white/12 bg-white/12"
-                          : "border-white/8 bg-white/[0.04] text-stone-200"
-                      }`}
+                      className="block rounded-[1.5rem] border border-white/8 bg-white/[0.04] px-4 py-4 text-stone-200"
                     >
                       <div className="flex items-start gap-4">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/8">

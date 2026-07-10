@@ -26,7 +26,7 @@ interface JourneySidebarProps {
   className?: string;
 }
 
-export function JourneySidebar({ activeStepId, steps, className }: JourneySidebarProps) {
+export function JourneySidebar({ steps, className }: JourneySidebarProps) {
   return (
     <aside id="journey" className={cn("lg:sticky lg:top-6 lg:h-fit", className)}>
       <div className="paper-panel overflow-hidden rounded-[2rem] p-6">
@@ -42,7 +42,6 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
         <div className="mt-5 space-y-3">
           {steps.map((step, index) => {
             const Icon = iconMap[step.icon];
-            const isActive = step.id === activeStepId;
 
             return (
               <motion.div
@@ -51,22 +50,10 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.08 * index, duration: 0.45 }}
-                className={cn(
-                  "scroll-mt-8 rounded-[1.55rem] border px-4 py-4 transition",
-                  isActive
-                    ? "border-[#d8c296]/35 bg-[linear-gradient(180deg,rgba(246,239,223,0.96),rgba(240,231,214,0.9))] shadow-[0_12px_30px_rgba(73,52,26,0.08)]"
-                    : "border-stone-400/14 bg-white/54 hover:bg-white/68",
-                )}
+                className="scroll-mt-8 rounded-[1.55rem] border border-stone-400/14 bg-white/54 px-4 py-4 transition hover:bg-white/68"
               >
                 <div className="flex items-start gap-4">
-                  <div
-                    className={cn(
-                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border",
-                      isActive
-                        ? "border-[#d6b36c]/40 bg-[#17312a] text-[#f6efdf]"
-                        : "border-stone-400/20 bg-white/85 text-stone-700",
-                    )}
-                  >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-stone-400/20 bg-white/85 text-stone-700">
                     <Icon className="h-4 w-4" />
                   </div>
 

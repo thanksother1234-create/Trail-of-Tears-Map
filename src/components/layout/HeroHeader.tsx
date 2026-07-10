@@ -52,26 +52,7 @@ export function HeroHeader({
           </div>
         </div>
 
-        <nav className="mb-8 hidden items-center justify-end gap-x-6 text-sm text-stone-200 xl:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              aria-current={link.label === activeNavLabel ? "page" : undefined}
-              onClick={() => onNavigate(link.label, link.journeyStepId)}
-              className={`relative whitespace-nowrap pb-2 transition hover:text-white ${
-                link.label === activeNavLabel ? "text-white" : "text-stone-300"
-              }`}
-            >
-              {link.label}
-              {link.label === activeNavLabel ? (
-                <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-[#d6b36c]" />
-              ) : null}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start xl:gap-12">
+        <div className="flex flex-col gap-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,20 +87,6 @@ export function HeroHeader({
               </div>
             </div>
           </motion.div>
-
-          <div className="hidden xl:flex xl:flex-col xl:items-end xl:gap-5">
-            <div className="w-full rounded-[1.8rem] border border-white/10 bg-white/[0.06] p-5 shadow-[0_18px_36px_rgba(4,10,9,0.22)] backdrop-blur-sm">
-              <p className="section-kicker text-stone-400">Reading frame</p>
-              <h2 className="mt-3 font-display text-3xl leading-none text-white">
-                Compare the routes, not just the dates.
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-stone-300">
-                The same federal policy touched each nation differently. Use the project to notice
-                where routes diverge in timing, transport, violence, and what rebuilding looked
-                like afterward.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </header>
