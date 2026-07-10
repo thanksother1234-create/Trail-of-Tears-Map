@@ -3,7 +3,7 @@ import type { JourneyStep, RouteId, TimelineEvent, TrailRoute } from "@/types/tr
 export const journeyGuideTitle = "A guided reading path";
 export const journeyGuideDescription =
   "Move through the sections in order if you want the page to feel less like an exhibit label and more like a lived sequence of policy, confinement, transport, and survival.";
-export const journeyGuideYears = "1830 to 1842";
+export const journeyGuideYears = "1830 to the 1850s";
 export const journeyQuote =
   '"It will place a dense and civilized population in large tracts of country now occupied by a few savage hunters."';
 export const journeyQuoteAttribution = "- Andrew Jackson, Second Annual Message to Congress, December 6, 1830";
@@ -70,7 +70,10 @@ export const trailRoutes: TrailRoute[] = [
       "From Cherokee homelands in Georgia, Alabama, and Tennessee toward the reconstituted Cherokee Nation in Indian Territory.",
     featuredEventId: "cherokee-removal",
     sources: [
-      { label: "National Park Service", url: "https://www.nps.gov/trte/index.htm" },
+      {
+        label: "National Park Service: Cherokee Removal Transportation",
+        url: "https://www.nps.gov/articles/000/introduction-transportation-during-the-cherokee-removal-1837-1839.htm",
+      },
       { label: "Cherokee Nation History", url: "https://cherokee.org/about-the-nation/history/" },
     ],
     lineCoordinates: [
@@ -145,7 +148,12 @@ export const trailRoutes: TrailRoute[] = [
     displacement:
       "From Mississippi across river and road corridors in Arkansas toward the Choctaw Nation in Indian Territory.",
     featuredEventId: "choctaw-removal",
-    sources: [{ label: "Choctaw Nation", url: "https://www.choctawnation.com/" }],
+    sources: [
+      {
+        label: "Choctaw Nation: Choctaw Removals",
+        url: "https://www.choctawnation.com/news/iti-fabvssa/choctaw-removals/",
+      },
+    ],
     lineCoordinates: [
       [32.78, -89.48],
       [33.18, -90.08],
@@ -205,7 +213,9 @@ export const trailRoutes: TrailRoute[] = [
     displacement:
       "From northern Mississippi through the Memphis corridor into the Chickasaw district in Indian Territory.",
     featuredEventId: "chickasaw-removal",
-    sources: [{ label: "Chickasaw Nation", url: "https://chickasaw.net/" }],
+    sources: [
+      { label: "Chickasaw Nation: Removal", url: "https://chickasaw.net/Our-Nation/History/Removal.aspx" },
+    ],
     lineCoordinates: [
       [34.24, -88.99],
       [34.82, -89.54],
@@ -232,7 +242,7 @@ export const trailRoutes: TrailRoute[] = [
         id: "memphis-corridor",
         title: "Memphis Crossing",
         subtitle: "Mississippi River corridor",
-        year: "1837 to 1838",
+        year: "1837 to 1851",
         coordinates: [35.15, -90.05],
         description:
           "The Mississippi River corridor connected eastern homelands to western routes but also created delays and logistical strain.",
@@ -243,12 +253,12 @@ export const trailRoutes: TrailRoute[] = [
         id: "chickasaw-district",
         title: "Chickasaw District, Indian Territory",
         subtitle: "Initial resettlement in the west",
-        year: "1837 to 1838",
+        year: "1837 onward",
         coordinates: [34.23, -96.68],
         description:
-          "Chickasaw families entered a district purchased within Choctaw Territory and began rebuilding under radically altered conditions.",
+          "Beginning in 1837, Chickasaw families entered a district purchased within Choctaw Territory and began rebuilding under radically altered conditions.",
         significance:
-          "This avoids treating later Tishomingo as an 1830s removal stop; the westward journey ended first in a broader Chickasaw district before later political centers emerged.",
+          "This avoids treating later Tishomingo as an 1830s removal stop. Most Chickasaw removals continued through 1851, even as the district became a place of rebuilding.",
       },
     ],
   },
@@ -269,7 +279,6 @@ export const trailRoutes: TrailRoute[] = [
         label: "National Park Service: The Muscogee Nation",
         url: "https://www.nps.gov/ocmu/learn/historyculture/the-muscogee-nation.htm",
       },
-      { label: "The Muscogee Nation", url: "https://www.muscogeenation.com/" },
     ],
     lineCoordinates: [
       [32.46, -84.99],
@@ -333,10 +342,13 @@ export const trailRoutes: TrailRoute[] = [
     featuredEventId: "seminole-removal",
     sources: [
       {
-        label: "Fort King Heritage Foundation",
+        label: "Fort King Heritage Foundation: The Three Seminole Wars",
         url: "https://ftking.org/the-three-seminole-wars/",
       },
-      { label: "The Seminole Nation of Oklahoma", url: "https://www.sno-nsn.gov/" },
+      {
+        label: "National Park Service: Seminole Incarceration",
+        url: "https://www.nps.gov/casa/learn/historyculture/seminole-incarceration.htm",
+      },
     ],
     lineCoordinates: [
       [29.19, -82.14],
@@ -393,12 +405,12 @@ export const trailRoutes: TrailRoute[] = [
         id: "fort-gibson",
         title: "Fort Gibson, Indian Territory",
         subtitle: "Western destination",
-        year: "1842",
+        year: "1842 and after",
         coordinates: [35.8, -95.25],
         description:
-          "Removal concluded unevenly, with many Seminoles forced west toward Indian Territory while others remained in Florida.",
+          "By 1842, after the Second Seminole War ended, thousands of Seminoles had been forced west while others remained in Florida. Removals continued into the 1850s.",
         significance:
-          "The Seminole story complicates any simple endpoint and shows the limits of federal power even amid extreme violence.",
+          "The end of the Second Seminole War was not the end of removal. Continued resistance and later deportations complicate any simple endpoint.",
       },
     ],
   },
@@ -434,10 +446,10 @@ export const timelineEvents: TimelineEvent[] = [
   },
   {
     id: "chickasaw-removal",
-    year: "1837",
-    title: "Chickasaw cession and relocation",
+    year: "1837 to 1851",
+    title: "Chickasaw removal begins",
     summary:
-      "Land sale agreements still culminate in westward displacement, showing how negotiated language could mask coercive outcomes.",
+      "Land sale agreements still culminate in westward displacement. Most Chickasaw removals unfolded from 1837 to 1851, showing how negotiated language could mask coercive outcomes.",
     routeId: "chickasaw",
   },
   {
@@ -450,10 +462,10 @@ export const timelineEvents: TimelineEvent[] = [
   },
   {
     id: "seminole-removal",
-    year: "1842",
-    title: "Seminole removal campaign wanes",
+    year: "1842 and after",
+    title: "Second Seminole War ends; removal continues",
     summary:
-      "War, capture, maritime transport, and resistance define the longest and most contested removal effort of the five nations.",
+      "The Second Seminole War ended in 1842, but later removals continued into the 1850s as Seminole resistance endured.",
     routeId: "seminole",
   },
 ];

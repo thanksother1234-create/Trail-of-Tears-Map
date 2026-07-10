@@ -3,61 +3,9 @@ import { ArrowDown, BookOpenText, Compass, Landmark } from "lucide-react";
 
 import { trailRoutes } from "@/data/trailData";
 
-const sourceLabelOverrides: Record<string, string> = {
-  "cherokee.org": "Cherokee Nation",
-  "chickasaw.net": "Chickasaw Nation",
-  "choctawnation.com": "Choctaw Nation",
-  "ftking.org": "Fort King Heritage Foundation",
-  "muscogeenation.com": "The Muscogee Nation",
-  "nps.gov": "National Park Service",
-  "sno-nsn.gov": "The Seminole Nation of Oklahoma",
-};
-
-function getSourceSiteKey(url: string) {
-  return new URL(url).hostname.replace(/^www\./, "").toLowerCase();
-}
-
-function getSourceSiteHomePage(url: string) {
-  const parsed = new URL(url);
-
-  return `${parsed.protocol}//${parsed.hostname}/`;
-}
-
-function getSourceSiteLabel(siteKey: string, fallbackLabel: string) {
-  return (
-    sourceLabelOverrides[siteKey] ??
-    fallbackLabel
-      .replace(/:\s.*$/, "")
-      .replace(/\s+(History|Historical Documents|Removal)$/i, "")
-      .trim()
-  );
-}
-
 export function StatementBanner() {
   const routeSources = trailRoutes.flatMap((route) => route.sources);
-  const sourceCountsBySite = routeSources.reduce((counts, source) => {
-    const siteKey = getSourceSiteKey(source.url);
-
-    counts.set(siteKey, (counts.get(siteKey) ?? 0) + 1);
-    return counts;
-  }, new Map<string, number>());
-
-  const sources = Array.from(
-    new Map(
-      routeSources.map((source) => {
-        const siteKey = getSourceSiteKey(source.url);
-        const useHomePage = (sourceCountsBySite.get(siteKey) ?? 0) > 1;
-        const normalizedSource = useHomePage
-          ? {
-              label: getSourceSiteLabel(siteKey, source.label),
-              url: getSourceSiteHomePage(source.url),
-            }
-          : source;
-
-        return [normalizedSource.url, normalizedSource] as const;
-      }),
-    ).values(),
-  );
+  const sources = Array.from(new Map(routeSources.map((source) => [source.url, source])).values());
 
   return (
     <motion.section
@@ -77,6 +25,28 @@ export function StatementBanner() {
             The routes on this page mark only the visible spine of a much larger story: stockades,
             confiscated homelands, military escort, disease, weather, disrupted families, and the
             long work of reconstituting community in the west.
+          </p>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-stone-300">
+            Enslaved people also traveled with Cherokee detachments. For Black Seminoles, removal
+            west brought the additional danger of kidnapping and re-enslavement.
+          </p>
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm text-[#d5b471]">
+            <a
+              href="https://www.nps.gov/articles/000/trail-of-tears-at-pea-ridge-national-military-park.htm"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-[#d5b471]/60 underline-offset-4 transition hover:text-white"
+            >
+              Cherokee evidence
+            </a>
+            <a
+              href="https://www.nps.gov/articles/000/black-seminole-indian-scouts.htm"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-[#d5b471]/60 underline-offset-4 transition hover:text-white"
+            >
+              Black Seminole history
+            </a>
           </p>
           <div className="mt-6 flex items-center gap-3 text-sm uppercase tracking-[0.24em] text-[#d5b471]">
             <Landmark className="h-4 w-4" />
