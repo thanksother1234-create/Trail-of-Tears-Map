@@ -27,6 +27,16 @@ function normalizeBoolean(value: string | undefined, fallback = false) {
   return ["1", "true", "yes", "on"].includes(value.trim().toLowerCase());
 }
 
+type RouteTagKey = "cherokee" | "choctaw" | "chickasaw" | "creek" | "seminole";
+
+const routeTagMatchers: Array<{ key: RouteTagKey; pattern: RegExp }> = [
+  { key: "cherokee", pattern: /cherokee/i },
+  { key: "choctaw", pattern: /choctaw/i },
+  { key: "chickasaw", pattern: /chickasaw/i },
+  { key: "creek", pattern: /creek/i },
+  { key: "seminole", pattern: /seminole/i },
+];
+
 function getBlobWriteAccess(request?: Request) {
   const feedbackStoreId = process.env.FEEDBACK_BLOB_STORE_ID?.trim();
   const defaultStoreId = process.env.BLOB_STORE_ID?.trim();
@@ -60,13 +70,37 @@ function getDiscordAlertConfig() {
     .split(",")
     .map((value) => value.trim())
     .filter(Boolean);
+  const routeTagIds: Partial<Record<RouteTagKey, string>> = {
+    cherokee: process.env.DISCORD_FEEDBACK_TAG_CHEROKEE_ID?.trim() || "",
+    choctaw: process.env.DISCORD_FEEDBACK_TAG_CHOCTAW_ID?.trim() || "",
+    chickasaw: process.env.DISCORD_FEEDBACK_TAG_CHICKASAW_ID?.trim() || "",
+    creek: process.env.DISCORD_FEEDBACK_TAG_CREEK_ID?.trim() || "",
+    seminole: process.env.DISCORD_FEEDBACK_TAG_SEMINOLE_ID?.trim() || "",
+  };
 
   return {
     webhookUrl,
     forumMode,
     forumTagIds,
+    routeTagIds,
     isConfigured: Boolean(webhookUrl),
   };
+}
+
+function inferRouteTagKey(routeLabel: string) {
+  const match = routeTagMatchers.find(({ pattern }) => pattern.test(routeLabel));
+
+  return match?.key;
+}
+
+function getAppliedDiscordTags(
+  routeLabel: string,
+  discordConfig: ReturnType<typeof getDiscordAlertConfig>,
+) {
+  const inferredRouteTag = inferRouteTagKey(routeLabel);
+  const routeTagId = inferredRouteTag ? discordConfig.routeTagIds[inferredRouteTag] : "";
+
+  return [...new Set([routeTagId, ...discordConfig.forumTagIds].filter(Boolean))];
 }
 
 function buildDiscordThreadName(entry: {
@@ -93,6 +127,8 @@ async function sendFeedbackAlert(entry: {
     return { sent: false, skipped: true };
   }
 
+  const appliedTags = getAppliedDiscordTags(entry.routeLabel, discordConfig);
+
   const response = await fetch(`${discordConfig.webhookUrl}?wait=true`, {
     method: "POST",
     headers: {
@@ -101,8 +137,8 @@ async function sendFeedbackAlert(entry: {
     body: JSON.stringify({
       username: "Trail Feedback",
       ...(discordConfig.forumMode ? { thread_name: buildDiscordThreadName(entry) } : {}),
-      ...(discordConfig.forumMode && discordConfig.forumTagIds.length
-        ? { applied_tags: discordConfig.forumTagIds }
+      ...(discordConfig.forumMode && appliedTags.length
+        ? { applied_tags: appliedTags }
         : {}),
       allowed_mentions: {
         parse: [],
@@ -155,6 +191,7 @@ async function sendFeedbackAlert(entry: {
 export function GET(request: Request) {
   const blobAccess = getBlobWriteAccess(request);
   const discordAlertConfig = getDiscordAlertConfig();
+  const configuredRouteTagCount = Object.values(discordAlertConfig.routeTagIds).filter(Boolean).length;
 
   return Response.json({
     ok: true,
@@ -169,6 +206,7 @@ export function GET(request: Request) {
     discordConfigured: discordAlertConfig.isConfigured,
     discordForumMode: discordAlertConfig.forumMode,
     discordForumTagCount: discordAlertConfig.forumTagIds.length,
+    discordRouteTagCount: configuredRouteTagCount,
   });
 }
 
