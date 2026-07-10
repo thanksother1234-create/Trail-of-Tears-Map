@@ -13,7 +13,6 @@ import {
 } from "react-leaflet";
 import { divIcon, latLngBounds, type LatLngTuple } from "leaflet";
 
-import { RouteLegend } from "@/components/map/RouteLegend";
 import type { RouteFilter, RouteId, RouteLine, TrailRoute } from "@/types/trail";
 
 interface TrailMapProps {
@@ -194,7 +193,7 @@ export function TrailMap({
             preferCanvas={true}
             zoomControl={false}
             scrollWheelZoom={false}
-            className="h-[340px] w-full sm:h-[430px] md:h-[520px] xl:h-[640px]"
+            className="h-[340px] w-full sm:h-[460px] md:h-[580px] xl:h-[680px]"
           >
             <TileLayer
               attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
@@ -252,12 +251,9 @@ export function TrailMap({
         </div>
       </div>
 
-      <div className="grid gap-4 lg:gap-5">
-        <RouteLegend className="w-full" routes={routes} />
-        <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
-          Schematic, approximate corridors for educational context. A line does not represent one continuous journey by every person; dashed segments indicate water travel.
-        </p>
-      </div>
+      <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
+        Schematic, approximate corridors for educational context. A line does not represent one continuous journey by every person; dashed segments indicate water travel.
+      </p>
     </div>
   );
 }

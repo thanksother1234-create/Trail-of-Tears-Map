@@ -13,7 +13,7 @@ interface InfoPanelProps {
 
 export function InfoPanel({ route, location }: InfoPanelProps) {
   return (
-    <aside id="location-panel" className="xl:sticky xl:top-6">
+    <aside id="location-panel" className="w-full">
       <AnimatePresence mode="wait">
         <motion.div
           key={location.id}
@@ -22,10 +22,10 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
         >
-          <Card className="relative overflow-hidden border-stone-400/18 bg-[linear-gradient(180deg,rgba(255,252,247,0.9),rgba(245,237,223,0.82))]">
+          <Card className="relative overflow-hidden border-stone-400/18 bg-[linear-gradient(180deg,rgba(255,252,247,0.9),rgba(245,237,223,0.82))] lg:grid lg:grid-cols-[minmax(270px,0.72fr)_minmax(0,1.28fr)]">
             <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: route.color }} />
 
-            <CardHeader className="space-y-5 p-6 pb-0">
+            <CardHeader className="space-y-5 p-6 pb-6 lg:border-r lg:border-stone-400/16 lg:p-7">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <Badge
@@ -75,7 +75,7 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-5 p-6">
+            <CardContent className="space-y-5 p-6 !pt-6 lg:p-7 lg:!pt-7">
               <div
                 className="relative overflow-hidden rounded-[1.6rem] border border-stone-400/16 p-5"
                 style={{

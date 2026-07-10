@@ -198,7 +198,7 @@ export default function App() {
                   onFilterChange={handleFilterChange}
                 />
 
-                <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
+                <div className="space-y-5">
                   <TrailMap
                     routes={trailRoutes}
                     selectedRouteId={selectedRouteId}

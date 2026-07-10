@@ -1,7 +1,8 @@
-import { type FormEvent, useMemo, useState } from "react";
+import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { MessageSquareText, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { trailRoutes } from "@/data/trailData";
 
 interface ContentFeedbackSectionProps {
   selectedRouteLabel: string;
@@ -11,8 +12,13 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 
 export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSectionProps) {
   const [feedback, setFeedback] = useState("");
+  const [routeLabel, setRouteLabel] = useState(selectedRouteLabel);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [statusMessage, setStatusMessage] = useState("");
+
+  useEffect(() => {
+    setRouteLabel(selectedRouteLabel);
+  }, [selectedRouteLabel]);
 
   const trimmedFeedback = feedback.trim();
   const helperText = useMemo(() => {
@@ -48,7 +54,7 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
         signal: controller.signal,
         body: JSON.stringify({
           message: trimmedFeedback,
-          routeLabel: selectedRouteLabel,
+          routeLabel,
           page: window.location.hash || "#route",
         }),
       });
@@ -103,15 +109,28 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
             <p className="mt-4 max-w-2xl text-sm leading-7 text-stone-700 sm:text-base">
               Use this form to flag questionable route details, source issues, year ranges that
               look inconsistent, wording that feels off, or context that seems incomplete. The
-              current route is attached automatically so your note stays anchored to what you were
-              reading. This feedback will be posted to a discord channel and I will get to any
+              selected route is attached to keep your note anchored to the history it concerns.
+              This feedback will be posted to a discord channel and I will get to any
               issues when I can.
             </p>
           </div>
 
           <div className="rounded-[1.5rem] border border-stone-400/14 bg-[#f8f2e6]/90 p-4 text-sm leading-6 text-stone-700">
-            <p className="section-kicker text-[0.62rem]">Current route context</p>
-            <p className="mt-2 font-medium text-stone-900">{selectedRouteLabel}</p>
+            <label htmlFor="feedback-route" className="section-kicker block text-[0.62rem]">
+              Route context
+            </label>
+            <select
+              id="feedback-route"
+              value={routeLabel}
+              onChange={(event) => setRouteLabel(event.target.value)}
+              className="mt-2 w-full rounded-xl border border-stone-400/18 bg-white/80 px-3 py-2 font-medium text-stone-900 outline-none transition focus:border-stone-500/30"
+            >
+              {trailRoutes.map((route) => (
+                <option key={route.id} value={route.label}>
+                  {route.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 

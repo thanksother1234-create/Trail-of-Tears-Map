@@ -52,12 +52,31 @@ export function HeroHeader({
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)] xl:items-start">
+        <nav className="mb-8 hidden items-center justify-end gap-x-6 text-sm text-stone-200 xl:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              aria-current={link.label === activeNavLabel ? "page" : undefined}
+              onClick={() => onNavigate(link.label, link.journeyStepId)}
+              className={`relative whitespace-nowrap pb-2 transition hover:text-white ${
+                link.label === activeNavLabel ? "text-white" : "text-stone-300"
+              }`}
+            >
+              {link.label}
+              {link.label === activeNavLabel ? (
+                <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-[#d6b36c]" />
+              ) : null}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex flex-col gap-8 xl:grid xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start xl:gap-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="max-w-5xl"
+            className="max-w-6xl"
           >
             <Badge className="border-white/12 bg-white/10 text-stone-100">
               Interactive historical atlas
@@ -89,26 +108,7 @@ export function HeroHeader({
           </motion.div>
 
           <div className="hidden xl:flex xl:flex-col xl:items-end xl:gap-5">
-            <nav className="max-w-[42rem] flex-wrap justify-end gap-x-6 gap-y-3 text-sm text-stone-200 xl:flex">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  aria-current={link.label === activeNavLabel ? "page" : undefined}
-                  onClick={() => onNavigate(link.label, link.journeyStepId)}
-                  className={`relative pb-2 transition hover:text-white ${
-                    link.label === activeNavLabel ? "text-white" : "text-stone-300"
-                  }`}
-                >
-                  {link.label}
-                  {link.label === activeNavLabel ? (
-                    <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-[#d6b36c]" />
-                  ) : null}
-                </a>
-              ))}
-            </nav>
-
-            <div className="w-full max-w-[22rem] rounded-[1.8rem] border border-white/10 bg-white/[0.06] p-5 shadow-[0_18px_36px_rgba(4,10,9,0.22)] backdrop-blur-sm">
+            <div className="w-full rounded-[1.8rem] border border-white/10 bg-white/[0.06] p-5 shadow-[0_18px_36px_rgba(4,10,9,0.22)] backdrop-blur-sm">
               <p className="section-kicker text-stone-400">Reading frame</p>
               <h2 className="mt-3 font-display text-3xl leading-none text-white">
                 Compare the routes, not just the dates.
