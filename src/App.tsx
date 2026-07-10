@@ -6,6 +6,7 @@ import { HeroHeader } from "@/components/layout/HeroHeader";
 import { JourneySidebar } from "@/components/layout/JourneySidebar";
 import { TrailMap } from "@/components/map/TrailMap";
 import { InfoPanel } from "@/components/panels/InfoPanel";
+import { ContentFeedbackSection } from "@/components/sections/ContentFeedbackSection";
 import { StatementBanner } from "@/components/sections/StatementBanner";
 import { RemovalTimeline } from "@/components/timeline/RemovalTimeline";
 import { journeySteps, routeLookup, routeOrder, timelineEvents, trailRoutes } from "@/data/trailData";
@@ -217,6 +218,7 @@ export default function App() {
             />
 
             <StatementBanner />
+            <ContentFeedbackSection selectedRouteLabel={selectedRoute.label} />
           </section>
         </div>
       </main>
