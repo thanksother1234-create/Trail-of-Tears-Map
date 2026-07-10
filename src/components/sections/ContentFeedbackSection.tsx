@@ -23,8 +23,6 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
     if (submitState === "error") {
       return statusMessage;
     }
-
-    return "Flag route details, dates, wording, or sources that seem off. Submissions include the current route for context. This feedback will be posted to a discord channel and I will get to an issues when I can.";
   }, [statusMessage, submitState]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -106,7 +104,8 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
               Use this form to flag questionable route details, source issues, year ranges that
               look inconsistent, wording that feels off, or context that seems incomplete. The
               current route is attached automatically so your note stays anchored to what you were
-              reading.
+              reading. This feedback will be posted to a discord channel and I will get to any
+              issues when I can.
             </p>
           </div>
 
