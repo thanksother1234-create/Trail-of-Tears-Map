@@ -19,36 +19,51 @@ function normalizeString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function hasBlobWriteAccess() {
-  const hasReadWriteToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
-  const hasOidcCredentials = Boolean(
-    process.env.BLOB_STORE_ID && process.env.VERCEL_OIDC_TOKEN,
-  );
+function getBlobWriteAccess() {
+  const feedbackStoreId = process.env.FEEDBACK_BLOB_STORE_ID?.trim();
+  const defaultStoreId = process.env.BLOB_STORE_ID?.trim();
+  const feedbackReadWriteToken = process.env.FEEDBACK_BLOB_READ_WRITE_TOKEN?.trim();
+  const defaultReadWriteToken = process.env.BLOB_READ_WRITE_TOKEN?.trim();
+  const oidcToken = process.env.VERCEL_OIDC_TOKEN?.trim();
+
+  const storeId = feedbackStoreId || defaultStoreId || "";
+  const readWriteToken = feedbackReadWriteToken || defaultReadWriteToken || "";
+  const variablePrefix = feedbackStoreId || feedbackReadWriteToken ? "FEEDBACK_BLOB" : "BLOB";
+
+  const hasReadWriteToken = Boolean(readWriteToken);
+  const hasOidcCredentials = Boolean(storeId && oidcToken);
 
   return {
     hasReadWriteToken,
     hasOidcCredentials,
+    oidcToken,
+    readWriteToken,
+    storeId,
+    variablePrefix,
     isConfigured: hasReadWriteToken || hasOidcCredentials,
   };
 }
 
 export function GET() {
-  const blobAccess = hasBlobWriteAccess();
+  const blobAccess = getBlobWriteAccess();
 
   return Response.json({
     ok: true,
     storageConfigured: blobAccess.isConfigured,
-    storeLinked: Boolean(process.env.BLOB_STORE_ID),
+    storeLinked: Boolean(blobAccess.storeId),
     authMode: blobAccess.hasReadWriteToken
       ? "read-write-token"
       : blobAccess.hasOidcCredentials
         ? "oidc"
         : "missing",
+    variablePrefix: blobAccess.variablePrefix,
   });
 }
 
 export async function POST(request: Request) {
-  if (!hasBlobWriteAccess().isConfigured) {
+  const blobAccess = getBlobWriteAccess();
+
+  if (!blobAccess.isConfigured) {
     return jsonResponse(
       {
         error:
@@ -88,11 +103,18 @@ export async function POST(request: Request) {
   };
 
   try {
-    await put(`feedback/${Date.now()}-${crypto.randomUUID()}.json`, JSON.stringify(entry, null, 2), {
-      access: "private",
-      addRandomSuffix: false,
-      contentType: "application/json",
-    });
+    await put(
+      `feedback/${Date.now()}-${crypto.randomUUID()}.json`,
+      JSON.stringify(entry, null, 2),
+      {
+        access: "private",
+        addRandomSuffix: false,
+        contentType: "application/json",
+        ...(blobAccess.storeId ? { storeId: blobAccess.storeId } : {}),
+        ...(blobAccess.readWriteToken ? { token: blobAccess.readWriteToken } : {}),
+        ...(blobAccess.oidcToken ? { oidcToken: blobAccess.oidcToken } : {}),
+      },
+    );
   } catch (error) {
     console.error("Unable to store feedback in Vercel Blob.", error);
     return jsonResponse(
