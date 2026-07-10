@@ -19,17 +19,36 @@ function normalizeString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-export default async function handler(request: Request) {
-  if (request.method !== "POST") {
-    return new Response(null, {
-      status: 405,
-      headers: {
-        Allow: "POST",
-      },
-    });
-  }
+function hasBlobWriteAccess() {
+  const hasReadWriteToken = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  const hasOidcCredentials = Boolean(
+    process.env.BLOB_STORE_ID && process.env.VERCEL_OIDC_TOKEN,
+  );
 
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  return {
+    hasReadWriteToken,
+    hasOidcCredentials,
+    isConfigured: hasReadWriteToken || hasOidcCredentials,
+  };
+}
+
+export function GET() {
+  const blobAccess = hasBlobWriteAccess();
+
+  return Response.json({
+    ok: true,
+    storageConfigured: blobAccess.isConfigured,
+    storeLinked: Boolean(process.env.BLOB_STORE_ID),
+    authMode: blobAccess.hasReadWriteToken
+      ? "read-write-token"
+      : blobAccess.hasOidcCredentials
+        ? "oidc"
+        : "missing",
+  });
+}
+
+export async function POST(request: Request) {
+  if (!hasBlobWriteAccess().isConfigured) {
     return jsonResponse(
       {
         error:
@@ -43,7 +62,8 @@ export default async function handler(request: Request) {
 
   try {
     payload = (await request.json()) as FeedbackPayload;
-  } catch {
+  } catch (error) {
+    console.error("Unable to parse feedback payload.", error);
     return jsonResponse({ error: "The feedback submission could not be read." }, 400);
   }
 
@@ -73,7 +93,8 @@ export default async function handler(request: Request) {
       addRandomSuffix: false,
       contentType: "application/json",
     });
-  } catch {
+  } catch (error) {
+    console.error("Unable to store feedback in Vercel Blob.", error);
     return jsonResponse(
       {
         error:
