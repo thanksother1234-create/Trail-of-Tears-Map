@@ -70,11 +70,6 @@ export function HeroHeader({
               overlapping removals shaped by law, military force, detention, weather, rivers, and
               survival.
             </p>
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-stone-300 sm:text-base">
-              Start anywhere, but read slowly. The project is built so the map, timeline, and
-              narrative panel keep returning each route to the people and systems behind it.
-            </p>
-
             <div className="mt-6 flex flex-wrap gap-3">
               <div className="rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs uppercase tracking-[0.28em] text-stone-200">
                 Five Nations

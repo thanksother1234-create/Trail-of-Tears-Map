@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, BookOpenText, Compass, Landmark } from "lucide-react";
+import { ArrowDown, BookOpenText, Landmark } from "lucide-react";
 
 import { trailRoutes } from "@/data/trailData";
 
@@ -57,40 +57,18 @@ export function StatementBanner() {
         <div id="conclusion" className="bg-[#132620] p-6 sm:p-8">
           <p className="section-kicker text-stone-400">Conclusion</p>
           <h3 className="mt-4 max-w-lg font-display text-3xl leading-none text-white sm:text-4xl">
-            The map is only the surface. The system behind it matters just as much.
+            The map shows movement. The system behind it matters just as much.
           </h3>
           <div className="mt-5 space-y-4">
-            <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] p-4">
-              <div className="flex items-center gap-3 text-[#d5b471]">
-                <Compass className="h-4 w-4" />
-                <span className="text-xs font-semibold uppercase tracking-[0.26em]">Routes differ</span>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-stone-300">
-                Each nation encountered removal through different corridors, logistics, seasons,
-                and forms of violence. Similar policy did not produce identical experience.
-              </p>
-            </div>
-
             <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] p-4">
               <div className="flex items-center gap-3 text-[#d5b471]">
                 <BookOpenText className="h-4 w-4" />
                 <span className="text-xs font-semibold uppercase tracking-[0.26em]">Read critically</span>
               </div>
               <p className="mt-3 text-sm leading-6 text-stone-300">
-                Law, treaty pressure, and military enforcement formed one system. The map shows
-                where people were forced to move, but not every camp, detachment, delay, death, or
-                act of resistance.
-              </p>
-            </div>
-
-            <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] p-4">
-              <div className="flex items-center gap-3 text-[#d5b471]">
-                <Compass className="h-4 w-4" />
-                <span className="text-xs font-semibold uppercase tracking-[0.26em]">Look beyond the endpoint</span>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-stone-300">
-                Arrival in Indian Territory did not close the story. Nations still had to rebuild
-                government, kin networks, and daily life after coerced relocation.
+                Each nation encountered removal through different corridors and forms of violence,
+                but law, treaty pressure, and military enforcement formed one system. The map cannot
+                show every camp, delay, death, act of resistance, or the rebuilding that followed.
               </p>
             </div>
           </div>

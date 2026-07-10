@@ -154,9 +154,7 @@ export default function App() {
                       Trace five removals, then notice how differently each nation was pushed west.
                     </h2>
                     <p className="mt-4 max-w-5xl text-pretty text-sm leading-7 text-stone-700 sm:text-base">
-                      This page is designed to be read, not just scanned. Choose a route or click a
-                      stop on the map and the narrative panel, timeline, and route framing will stay
-                      linked so the geography reads as lived history rather than a detached diagram.
+                      Choose a route or map stop to connect its geography with historical context.
                     </p>
 
                     <div className="mt-4 rounded-[1.45rem] border border-stone-400/14 bg-[#f8f2e6]/92 p-4 xl:hidden">
@@ -174,21 +172,8 @@ export default function App() {
                     <div className="mt-4 space-y-3 text-sm leading-6 text-stone-300">
                       <p>Pick one nation first, then compare it against another rather than treating all five removals as interchangeable.</p>
                       <p>Clicking a stop updates the route panel so each location sits inside a larger system of policy, transport, and survival.</p>
-                      <p>On smaller screens, the menu, timeline, and panel are meant to be read in sequence below the map.</p>
                     </div>
                   </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.24em] text-stone-600">
-                  <span className="rounded-full border border-stone-400/30 bg-white/65 px-4 py-2">
-                    Five nations, distinct removals
-                  </span>
-                  <span className="rounded-full border border-stone-400/30 bg-white/65 px-4 py-2">
-                    Linked map, timeline, and panel
-                  </span>
-                  <span className="rounded-full border border-stone-400/30 bg-white/65 px-4 py-2">
-                    1830 to the 1850s
-                  </span>
                 </div>
 
                 <RouteFilters
