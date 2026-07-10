@@ -21,7 +21,7 @@ function normalizeString(value: unknown) {
 
 function getBlobWriteAccess() {
   const feedbackStoreId = process.env.FEEDBACK_BLOB_STORE_ID?.trim();
-  const defaultStoreId = process.env.BLOB_STORE_ID?.trim();
+  const defaultStoreId = process.env.FEEDBACK_BLOB_STORE_ID?.trim();
   const feedbackReadWriteToken = process.env.FEEDBACK_BLOB_READ_WRITE_TOKEN?.trim();
   const defaultReadWriteToken = process.env.BLOB_READ_WRITE_TOKEN?.trim();
   const oidcToken = process.env.VERCEL_OIDC_TOKEN?.trim();
