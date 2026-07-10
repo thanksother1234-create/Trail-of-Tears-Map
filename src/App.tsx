@@ -130,8 +130,8 @@ export default function App() {
         onNavigate={handleHeroNavigate}
       />
 
-      <main className="mx-auto max-w-[1720px] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
-        <div className="grid gap-6 pt-6 xl:grid-cols-[320px_minmax(0,1fr)] xl:gap-8 xl:pt-8">
+      <main className="mx-auto w-full max-w-[1920px] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14 xl:px-10 2xl:px-12">
+        <div className="grid gap-6 pt-6 xl:grid-cols-[300px_minmax(0,1fr)] xl:gap-8 xl:pt-8 2xl:grid-cols-[320px_minmax(0,1fr)]">
           <JourneySidebar
             activeStepId={activeJourneyStepId}
             steps={journeySteps}
