@@ -7,6 +7,7 @@ import {
   journeyGuideYears,
   journeyQuote,
   journeyQuoteAttribution,
+  journeyQuoteSourceUrl,
 } from "@/data/trailData";
 import { cn } from "@/lib/utils";
 import type { JourneyStep, JourneyStepId } from "@/types/trail";
@@ -89,6 +90,14 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
             {journeyQuote}
           </p>
           <p className="mt-4 text-sm leading-6 text-stone-700">{journeyQuoteAttribution}</p>
+          <a
+            href={journeyQuoteSourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 inline-block text-sm font-medium text-stone-700 underline decoration-stone-400 underline-offset-4 transition hover:text-stone-950"
+          >
+            Read the full message
+          </a>
         </div>
       </div>
     </aside>

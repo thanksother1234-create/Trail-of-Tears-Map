@@ -7,6 +7,8 @@ export const journeyGuideYears = "1830 to 1842";
 export const journeyQuote =
   '"It will place a dense and civilized population in large tracts of country now occupied by a few savage hunters."';
 export const journeyQuoteAttribution = "- Andrew Jackson, Second Annual Message to Congress, December 6, 1830";
+export const journeyQuoteSourceUrl =
+  "https://www.presidency.ucsb.edu/documents/second-annual-message-3";
 
 export const routeOrder: RouteId[] = [
   "cherokee",

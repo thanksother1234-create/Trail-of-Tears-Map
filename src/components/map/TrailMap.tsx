@@ -247,7 +247,7 @@ export function TrailMap({
       <div className="grid gap-4 lg:gap-5">
         <RouteLegend className="w-full" routes={routes} />
         <p className="text-xs uppercase tracking-[0.24em] text-stone-600">
-          Approximate route corridors shown for educational context.
+          Approximate route corridors shown for educational context a line does not represent one continuous journey by every person.
         </p>
       </div>
     </div>
