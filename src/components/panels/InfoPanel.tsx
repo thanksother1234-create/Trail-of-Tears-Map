@@ -57,7 +57,7 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
                   <div className="flex items-center gap-2 text-stone-500">
                     <CalendarDays className="h-4 w-4" />
                     <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em]">
-                      Years
+                      When
                     </span>
                   </div>
                   <p className="mt-3 font-display text-2xl text-stone-950">{location.year}</p>
@@ -67,7 +67,7 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
                   <div className="flex items-center gap-2 text-stone-500">
                     <Milestone className="h-4 w-4" />
                     <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em]">
-                      Stops
+                      Route stops
                     </span>
                   </div>
                   <p className="mt-3 font-display text-2xl text-stone-950">{route.locations.length}</p>
@@ -83,13 +83,22 @@ export function InfoPanel({ route, location }: InfoPanelProps) {
                 }}
               >
                 <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/30 blur-2xl" />
-                <p className="section-kicker text-[0.64rem] text-stone-600">Selected location</p>
+                <p className="section-kicker text-[0.64rem] text-stone-600">What happened here</p>
                 <p className="mt-3 text-sm leading-7 text-stone-800">{location.description}</p>
               </div>
 
               <div>
-                <p className="section-kicker text-[0.64rem] text-stone-600">Why it matters</p>
+                <p className="section-kicker text-[0.64rem] text-stone-600">Why this stop matters</p>
                 <p className="mt-3 text-sm leading-7 text-stone-700">{location.significance}</p>
+              </div>
+
+              <Separator />
+
+              <div>
+                <p className="section-kicker text-[0.64rem] text-stone-600">How to read this route</p>
+                <div className="mt-3 rounded-[1.4rem] border border-stone-400/16 bg-[#f7f1e5]/82 p-4">
+                  <p className="text-sm leading-7 text-stone-800">{route.readingLens}</p>
+                </div>
               </div>
 
               <Separator />

@@ -71,12 +71,12 @@ export function StatementBanner() {
         <div id="impact" className="bg-[#11211d] p-6 sm:p-8">
           <p className="section-kicker text-stone-400">The Human Cost</p>
           <h3 className="mt-4 max-w-xl font-display text-4xl leading-none text-white sm:text-5xl">
-            This was not migration. It was state-designed removal.
+            Every line on the map stands in for waiting, hunger, pressure, grief, and rebuilding.
           </h3>
           <p className="mt-5 max-w-xl text-sm leading-7 text-stone-300 sm:text-base">
-            The routes on this page mark confinement sites, military corridors, legal pressure,
-            river crossings, hunger, winter exposure, and the forced rebuilding of nations in the
-            west.
+            The routes on this page mark only the visible spine of a much larger story: stockades,
+            confiscated homelands, military escort, disease, weather, disrupted families, and the
+            long work of reconstituting community in the west.
           </p>
           <div className="mt-6 flex items-center gap-3 text-sm uppercase tracking-[0.24em] text-[#d5b471]">
             <Landmark className="h-4 w-4" />
@@ -86,6 +86,9 @@ export function StatementBanner() {
 
         <div id="conclusion" className="bg-[#132620] p-6 sm:p-8">
           <p className="section-kicker text-stone-400">Conclusion</p>
+          <h3 className="mt-4 max-w-lg font-display text-3xl leading-none text-white sm:text-4xl">
+            The map is only the surface. The system behind it matters just as much.
+          </h3>
           <div className="mt-5 space-y-4">
             <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] p-4">
               <div className="flex items-center gap-3 text-[#d5b471]">
@@ -93,17 +96,31 @@ export function StatementBanner() {
                 <span className="text-xs font-semibold uppercase tracking-[0.26em]">Routes differ</span>
               </div>
               <p className="mt-3 text-sm leading-6 text-stone-300">
-                Each nation encountered removal through different corridors, logistics, seasons, and forms of violence.
+                Each nation encountered removal through different corridors, logistics, seasons,
+                and forms of violence. Similar policy did not produce identical experience.
               </p>
             </div>
 
             <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] p-4">
               <div className="flex items-center gap-3 text-[#d5b471]">
                 <BookOpenText className="h-4 w-4" />
-                <span className="text-xs font-semibold uppercase tracking-[0.26em]">Policy matters</span>
+                <span className="text-xs font-semibold uppercase tracking-[0.26em]">Read critically</span>
               </div>
               <p className="mt-3 text-sm leading-6 text-stone-300">
-                Law, treaty pressure, and military enforcement formed one system. The map is only the visible surface of it.
+                Law, treaty pressure, and military enforcement formed one system. The map shows
+                where people were forced to move, but not every camp, detachment, delay, death, or
+                act of resistance.
+              </p>
+            </div>
+
+            <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] p-4">
+              <div className="flex items-center gap-3 text-[#d5b471]">
+                <Compass className="h-4 w-4" />
+                <span className="text-xs font-semibold uppercase tracking-[0.26em]">Look beyond the endpoint</span>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-stone-300">
+                Arrival in Indian Territory did not close the story. Nations still had to rebuild
+                government, kin networks, and daily life after coerced relocation.
               </p>
             </div>
           </div>
@@ -111,6 +128,11 @@ export function StatementBanner() {
 
         <div id="sources" className="bg-[#10201c] p-6 sm:p-8">
           <p className="section-kicker text-stone-400">Sources</p>
+          <p className="mt-4 text-sm leading-7 text-stone-300">
+            These references ground the project in tribal, federal, and public-history sources
+            used across the routes. Repeated sites are listed once at the home-page level to keep
+            the bibliography cleaner.
+          </p>
           <div className="mt-5 space-y-3 text-sm leading-6 text-stone-300">
             {sources.map((source) => (
               <a
@@ -126,8 +148,9 @@ export function StatementBanner() {
           </div>
 
           <div className="mt-6 flex items-center gap-3 text-[#d5b471]">
+            <ArrowDown className="h-4 w-4" />
             <span className="text-xs font-semibold uppercase tracking-[0.24em]">
-              Riley Griffin : CC1030660
+              Project by Riley Griffin : CC1030660
             </span>
           </div>
         </div>

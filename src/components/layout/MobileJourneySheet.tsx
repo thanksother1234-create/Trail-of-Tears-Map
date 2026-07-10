@@ -101,8 +101,8 @@ export function MobileJourneySheet({
             <div>
               <p className="section-kicker text-[0.64rem] text-stone-400">Journey guide</p>
               <p className="mt-2 text-sm leading-6 text-stone-300">
-                Use this sidebar on smaller screens to keep the map tied to policy, detention,
-                and the human cost of removal.
+                Use this menu on smaller screens to keep the map tied to policy, detention,
+                logistics, resistance, and the human cost of removal.
               </p>
             </div>
 
@@ -149,15 +149,15 @@ export function MobileJourneySheet({
 
             <div className="rounded-[1.6rem] border border-white/8 bg-[#101a18] p-5">
               <p className="font-display text-2xl italic leading-8 text-stone-100">
-                "This was not a migration. It was a policy carried out through routes, detention,
-                and force."
+                "This was not a migration by choice. It was policy carried out through pressure,
+                detention, transport, and force."
               </p>
               <p className="mt-4 text-xs uppercase tracking-[0.28em] text-stone-400">
                 Mobile reading note
               </p>
               <p className="mt-3 text-sm leading-6 text-stone-300">
-                Rotate to landscape for a wider view of the trails, then scroll below the map to
-                reach the route panel and timeline cards.
+                Rotate to landscape for a wider view of the trails, then scroll below the map for
+                the route panel, the swipeable timeline, the sources, and the feedback form.
               </p>
             </div>
           </div>

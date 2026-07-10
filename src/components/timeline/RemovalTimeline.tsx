@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-
-import { Card } from "@/components/ui/card";
 import type { RouteId, TimelineEvent } from "@/types/trail";
 
 interface RemovalTimelineProps {
@@ -16,88 +14,63 @@ export function RemovalTimeline({ events, activeEventId, onEventSelect }: Remova
         <div className="max-w-2xl">
           <p className="section-kicker">Timeline of Removal</p>
           <h3 className="mt-3 font-display text-3xl leading-none text-stone-950 sm:text-4xl">
-            Policy happened in stages, not in a single march.
+            Removal unfolded in waves, not in one continuous march.
           </h3>
         </div>
         <p className="max-w-md text-sm leading-6 text-stone-600">
-          Tap a tribe-linked year to focus the route it intensified. The timeline stays tied to
-          the active route in the map and panel.
+          Tap a tribe-linked moment to focus the route it sharpened. On smaller screens, swipe the
+          timeline horizontally so the cards keep their breathing room.
         </p>
       </div>
 
-      <div className="relative mt-8 hidden 2xl:block">
-        <div className="absolute inset-x-6 top-[2.55rem] h-px bg-stone-400/30" />
-        <div className="grid grid-cols-6 gap-4">
-          {events.map((event) => {
-            const isActive = event.id === activeEventId;
+      <div className="mt-8 overflow-x-auto pb-2">
+        <div className="min-w-[1020px] px-1 pb-1">
+          <div className="relative">
+            <div className="absolute inset-x-6 top-[2.55rem] h-px bg-stone-400/30" />
+            <div className="grid grid-cols-6 gap-4">
+              {events.map((event) => {
+                const isActive = event.id === activeEventId;
 
-            return (
-              <button
-                key={event.id}
-                type="button"
-                onClick={() => onEventSelect(event.routeId)}
-                className="group flex h-full flex-col text-left"
-              >
-                <div className="mb-6 flex min-h-14 flex-col items-center px-3 text-center">
-                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-stone-500">
-                    {event.year}
-                  </div>
-                  <div className="mt-3 flex h-4 w-4 items-center justify-center rounded-full border border-stone-400/30 bg-[#f2eadb]">
-                    {isActive ? (
-                      <motion.span
-                        layoutId="timeline-dot"
-                        className="h-[0.62rem] w-[0.62rem] rounded-full bg-[#6b40ab]"
-                        transition={{ type: "spring", duration: 0.45, bounce: 0.25 }}
-                      />
-                    ) : null}
-                  </div>
-                </div>
+                return (
+                  <button
+                    key={event.id}
+                    type="button"
+                    onClick={() => onEventSelect(event.routeId)}
+                    className="group flex h-full flex-col text-left"
+                  >
+                    <div className="mb-6 flex min-h-14 flex-col items-start px-3">
+                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-stone-500">
+                        {event.year}
+                      </div>
+                      <div className="mt-3 flex h-4 w-4 items-center justify-center rounded-full border border-stone-400/30 bg-[#f2eadb]">
+                        {isActive ? (
+                          <motion.span
+                            layoutId="timeline-dot"
+                            className="h-[0.62rem] w-[0.62rem] rounded-full bg-[#6b40ab]"
+                            transition={{ type: "spring", duration: 0.45, bounce: 0.25 }}
+                          />
+                        ) : null}
+                      </div>
+                    </div>
 
-                <div
-                  className={`flex-1 rounded-[1.4rem] border px-4 py-4 transition ${
-                    isActive
-                      ? "border-stone-500/20 bg-white/82 shadow-[0_12px_28px_rgba(42,29,17,0.08)]"
-                      : "border-transparent bg-transparent group-hover:border-stone-400/14 group-hover:bg-white/48"
-                  }`}
-                >
-                  <h4 className="font-display text-[1.55rem] leading-none text-stone-950">
-                    {event.title}
-                  </h4>
-                  <p className="mt-3 text-sm leading-6 text-stone-700">{event.summary}</p>
-                </div>
-              </button>
-            );
-          })}
+                    <div
+                      className={`flex-1 rounded-[1.5rem] border px-4 py-4 transition ${
+                        isActive
+                          ? "border-stone-500/20 bg-white/86 shadow-[0_12px_28px_rgba(42,29,17,0.08)]"
+                          : "border-stone-400/14 bg-white/54 group-hover:border-stone-500/18 group-hover:bg-white/72"
+                      }`}
+                    >
+                      <h4 className="font-display text-[1.7rem] leading-none text-stone-950">
+                        {event.title}
+                      </h4>
+                      <p className="mt-3 text-sm leading-6 text-stone-700">{event.summary}</p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:hidden">
-        {events.map((event) => {
-          const isActive = event.id === activeEventId;
-
-          return (
-            <Card
-              key={event.id}
-              className={`border px-4 py-4 ${
-                isActive
-                  ? "border-stone-500/20 bg-white/84"
-                  : "border-stone-400/14 bg-white/56"
-              }`}
-            >
-              <button
-                type="button"
-                className="w-full text-left"
-                onClick={() => onEventSelect(event.routeId)}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.26em] text-stone-500">
-                  {event.year}
-                </p>
-                <h4 className="mt-3 font-display text-2xl text-stone-950">{event.title}</h4>
-                <p className="mt-2 text-sm leading-6 text-stone-700">{event.summary}</p>
-              </button>
-            </Card>
-          );
-        })}
       </div>
     </section>
   );

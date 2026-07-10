@@ -12,31 +12,36 @@ export const journeySteps: JourneyStep[] = [
   {
     id: "before-removal",
     title: "Before Removal",
-    description: "Homelands, towns, farms, and political systems flourished across the Southeast.",
+    description:
+      "These were lived homelands with farms, laws, trade routes, and kinship networks, not open land waiting to be taken.",
     icon: "landmark",
   },
   {
     id: "the-law",
     title: "The Law",
-    description: "Federal policy and treaty pressure framed expulsion as legal and inevitable.",
+    description:
+      "Congress, state power, and treaty pressure recast dispossession as paperwork, policy, and supposed inevitability.",
     icon: "scale",
   },
   {
     id: "the-route",
     title: "The Route",
-    description: "Different nations were forced along different paths, seasons, and military corridors.",
+    description:
+      "Removal unfolded through stockades, river landings, wagon roads, winter camps, and military escort rather than one single trail.",
     icon: "route",
   },
   {
     id: "the-human-cost",
     title: "The Human Cost",
-    description: "Disease, exposure, hunger, and imprisonment turned removal into mass suffering.",
+    description:
+      "People died before, during, and after the march as confinement, exposure, hunger, and grief compounded.",
     icon: "users",
   },
   {
     id: "conclusion",
     title: "Conclusion",
-    description: "The story is not migration by choice. It is removal by policy, design, and force.",
+    description:
+      "The map ends in the west, but the story continues in rebuilding, survival, memory, and unresolved loss.",
     icon: "flag",
   },
 ];
@@ -48,8 +53,11 @@ export const trailRoutes: TrailRoute[] = [
     label: "Cherokee Route",
     color: "#6b40ab",
     overview:
-      "The best-known Trail of Tears detachments left from stockades in 1838 and moved west by road, rail, and river.",
-    displacement: "From Georgia, Alabama, and Tennessee toward the Cherokee Nation in Indian Territory.",
+      "The Cherokee detachments of 1838 and 1839 became the most widely remembered image of the Trail of Tears, though even this route was a braided system of stockades, roads, rivers, and rail transfers.",
+    readingLens:
+      "Notice how the best-known route is still not one clean line. The violence began in confinement and continued through transport, weather, disease, and shortage.",
+    displacement:
+      "From Cherokee homelands in Georgia, Alabama, and Tennessee toward the reconstituted Cherokee Nation in Indian Territory.",
     featuredEventId: "cherokee-removal",
     sources: [
       { label: "National Park Service", url: "https://www.nps.gov/trte/index.htm" },
@@ -121,8 +129,11 @@ export const trailRoutes: TrailRoute[] = [
     label: "Choctaw Route",
     color: "#d8a130",
     overview:
-      "Choctaw removal began immediately after the 1830 Treaty of Dancing Rabbit Creek and unfolded in several forced waves.",
-    displacement: "From Mississippi across the Arkansas corridor into the Choctaw Nation in Indian Territory.",
+      "Choctaw removal began almost immediately after the Treaty of Dancing Rabbit Creek, making it one of the earliest large forced removals under the new policy.",
+    readingLens:
+      "This route helps show that removal was already underway years before the Cherokee detachments fixed the phrase 'Trail of Tears' in public memory.",
+    displacement:
+      "From Mississippi across river and road corridors in Arkansas toward the Choctaw Nation in Indian Territory.",
     featuredEventId: "choctaw-removal",
     sources: [{ label: "Choctaw Nation", url: "https://www.choctawnation.com/" }],
     lineCoordinates: [
@@ -178,7 +189,9 @@ export const trailRoutes: TrailRoute[] = [
     label: "Chickasaw Route",
     color: "#4d8c58",
     overview:
-      "Chickasaw removal followed land sale and treaty negotiations, but it still forced families west under the 1837 Treaty of Doaksville.",
+      "Chickasaw removal moved through treaty negotiation and land sale, but the softer language of agreement still ended in coerced westward displacement.",
+    readingLens:
+      "Read this route for the way legal agreement and coercion worked together. Payment and paperwork did not make removal voluntary.",
     displacement:
       "From northern Mississippi through the Memphis corridor into the Chickasaw district in Indian Territory.",
     featuredEventId: "chickasaw-removal",
@@ -235,9 +248,11 @@ export const trailRoutes: TrailRoute[] = [
     label: "Creek Route",
     color: "#2472b0",
     overview:
-      "Muscogee removal accelerated after internal division, land cessions, and the Creek War of 1836.",
+      "For the Muscogee (Creek), removal intensified through war, imprisonment, and barge transport after the violence of 1836.",
+    readingLens:
+      "This route makes the machinery of enforcement especially visible: military defeat, confinement, summer heat, transport, and forced rebuilding in the west.",
     displacement:
-      "From Georgia and Alabama, through Montgomery, toward western settlements in Indian Territory.",
+      "From Georgia and Alabama, through Montgomery and river transport corridors, toward western settlements in Indian Territory.",
     featuredEventId: "creek-removal",
     sources: [
       {
@@ -300,9 +315,11 @@ export const trailRoutes: TrailRoute[] = [
     label: "Seminole Route",
     color: "#c84c38",
     overview:
-      "Seminole removal unfolded through the Second Seminole War, capture, detention, and maritime transport, making it one of the longest and most violent removal campaigns.",
+      "Seminole removal was bound to the Second Seminole War and often moved through capture, detention, and water transport rather than a single overland march.",
+    readingLens:
+      "The water crossing is intentional. For many Seminoles, removal moved through Tampa Bay and Gulf transport, showing that the geography of expulsion was not only roads.",
     displacement:
-      "From central Florida to Fort Brooke on Tampa Bay, then by ship across the Gulf Coast corridor toward New Orleans and on to Indian Territory.",
+      "From central Florida to Fort Brooke on Tampa Bay, then by ship across the Gulf Coast corridor toward New Orleans and onward to Indian Territory.",
     featuredEventId: "seminole-removal",
     sources: [
       {
@@ -386,41 +403,47 @@ export const timelineEvents: TimelineEvent[] = [
     id: "removal-act",
     year: "1830",
     title: "Indian Removal Act",
-    summary: "Federal law formalizes the push to exchange eastern Native lands for territory farther west.",
+    summary:
+      "Congress gives federal backing to the exchange of eastern Native homelands for territory farther west, turning dispossession into national policy.",
   },
   {
     id: "choctaw-removal",
     year: "1830 to 1833",
     title: "Choctaw removal begins",
-    summary: "One of the earliest large-scale removals unfolds under treaty pressure and hazardous travel conditions.",
+    summary:
+      "One of the earliest large-scale removals unfolds in waves under treaty pressure, bad weather, disease, and inadequate supplies.",
     routeId: "choctaw",
   },
   {
     id: "creek-removal",
     year: "1836",
     title: "Creek removal intensifies",
-    summary: "Conflict, confinement, and military transport accelerate Creek displacement from Alabama and Georgia.",
+    summary:
+      "Conflict, confinement, and military transport accelerate Muscogee displacement from Alabama and Georgia.",
     routeId: "creek",
   },
   {
     id: "chickasaw-removal",
     year: "1837",
     title: "Chickasaw cession and relocation",
-    summary: "Land sale agreements still culminate in westward displacement and the rebuilding of community in exile.",
+    summary:
+      "Land sale agreements still culminate in westward displacement, showing how negotiated language could mask coercive outcomes.",
     routeId: "chickasaw",
   },
   {
     id: "cherokee-removal",
     year: "1838 to 1839",
     title: "Cherokee detachments march west",
-    summary: "Stockades, winter travel, and long overland routes turn removal into the most widely remembered Trail of Tears.",
+    summary:
+      "Stockades, winter travel, and long overland routes turn Cherokee removal into the most widely remembered image of the Trail of Tears.",
     routeId: "cherokee",
   },
   {
     id: "seminole-removal",
     year: "1842",
     title: "Seminole removal campaign wanes",
-    summary: "War, capture, and resistance define the most prolonged removal effort of the five nations.",
+    summary:
+      "War, capture, maritime transport, and resistance define the longest and most contested removal effort of the five nations.",
     routeId: "seminole",
   },
 ];
