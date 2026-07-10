@@ -10,14 +10,14 @@ export function RouteLegend({ className, routes }: RouteLegendProps) {
   return (
     <div
       className={cn(
-        "grid w-full gap-3 rounded-[1.35rem] border border-stone-400/18 bg-white/95 p-4 shadow-[0_14px_35px_rgba(36,24,13,0.1)]",
+        "grid w-full gap-4 rounded-[1.45rem] border border-stone-400/18 bg-white/95 p-4 shadow-[0_14px_35px_rgba(36,24,13,0.1)] md:grid-cols-[minmax(220px,1.05fr)_repeat(2,minmax(0,1fr))] xl:grid-cols-[minmax(240px,1.05fr)_repeat(5,minmax(0,1fr))]",
         className,
       )}
     >
-      <div className="space-y-1">
+      <div className="space-y-1 md:pr-4">
         <p className="section-kicker text-[0.64rem]">Route Key</p>
         <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
-          Indian Territory highlighted in sage
+          Color separates route families across the map
         </p>
       </div>
       {routes.map((route) => (

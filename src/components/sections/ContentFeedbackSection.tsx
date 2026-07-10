@@ -100,12 +100,13 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
           <div>
             <p className="section-kicker">Review The Content</p>
             <h3 className="mt-3 max-w-2xl font-display text-3xl leading-none text-stone-950 sm:text-4xl">
-              If you have an issue with the content on this site, send a note here.
+              Help sharpen the history on this page.
             </h3>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-stone-700 sm:text-base">
-              Use this form to flag questionable route details, source issues, dates that look
-              inconsistent, or language that needs revision. The current route is attached
-              automatically so the note stays grounded in context.
+              Use this form to flag questionable route details, source issues, year ranges that
+              look inconsistent, wording that feels off, or context that seems incomplete. The
+              current route is attached automatically so your note stays anchored to what you were
+              reading.
             </p>
           </div>
 
@@ -128,7 +129,7 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
                   setStatusMessage("");
                 }
               }}
-              placeholder="Example: The year range in this stop looks inconsistent with the next stop, and the route note may need another source."
+              placeholder="Example: The year range in this stop conflicts with the next panel, and the wording makes it sound like a single march instead of multiple detachments."
               className="mt-3 min-h-44 w-full rounded-[1.6rem] border border-stone-400/18 bg-white/88 px-5 py-4 text-sm leading-7 text-stone-900 outline-none transition placeholder:text-stone-500 focus:border-stone-500/26 focus:bg-white"
               maxLength={4000}
             />

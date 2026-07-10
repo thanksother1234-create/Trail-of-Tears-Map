@@ -24,11 +24,14 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
       <div className="paper-panel overflow-hidden rounded-[2rem] p-6">
         <div className="rounded-[1.6rem] border border-stone-400/18 bg-[#152722] px-5 py-6 text-stone-50 shadow-[0_14px_36px_rgba(20,28,24,0.22)]">
           <p className="section-kicker text-stone-300">The Journey</p>
-          <h2 className="mt-3 font-display text-4xl leading-none">1830 to 1842</h2>
+          <h2 className="mt-3 font-display text-4xl leading-none">A guided reading path</h2>
           <p className="mt-4 text-sm leading-7 text-stone-200/88">
-            Read the map like a narrative. Each stop sits inside a longer chain of law, detention,
-            military power, and survival.
+            Move through the sections in order if you want the page to feel less like an exhibit
+            label and more like a lived sequence of policy, confinement, transport, and survival.
           </p>
+          <div className="mt-5 inline-flex rounded-full border border-white/10 bg-white/8 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-stone-200">
+            1830 to 1842
+          </div>
         </div>
 
         <div className="mt-5 space-y-3">
@@ -44,10 +47,10 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.08 * index, duration: 0.45 }}
                 className={cn(
-                  "scroll-mt-8 rounded-[1.4rem] border px-4 py-4 transition",
+                  "scroll-mt-8 rounded-[1.55rem] border px-4 py-4 transition",
                   isActive
-                    ? "border-[#d8c296]/35 bg-[#f3ecde]/88 shadow-[0_12px_30px_rgba(73,52,26,0.08)]"
-                    : "border-stone-400/14 bg-white/50",
+                    ? "border-[#d8c296]/35 bg-[linear-gradient(180deg,rgba(246,239,223,0.96),rgba(240,231,214,0.9))] shadow-[0_12px_30px_rgba(73,52,26,0.08)]"
+                    : "border-stone-400/14 bg-white/54 hover:bg-white/68",
                 )}
               >
                 <div className="flex items-start gap-4">
@@ -77,12 +80,16 @@ export function JourneySidebar({ activeStepId, steps, className }: JourneySideba
           })}
         </div>
 
-        <div className="mt-5 rounded-[1.6rem] border border-stone-400/14 bg-[#ede5d5]/92 p-5">
+        <div className="mt-5 rounded-[1.6rem] border border-stone-400/14 bg-[linear-gradient(180deg,rgba(237,229,213,0.96),rgba(233,223,204,0.92))] p-5">
           <p className="font-display text-[1.55rem] italic leading-8 text-stone-900">
-            "The removal of the Indians beyond the white settlements is necessary for their own good and for the permanent prosperity of ours."
+            "What looks tidy on a map was lived as rupture, waiting, marching, rebuilding, and loss."
           </p>
           <p className="mt-4 text-xs uppercase tracking-[0.28em] text-stone-500">
-            President Andrew Jackson, 1830, in his message to Congress advocating for the Indian Removal Act
+            Reading note
+          </p>
+          <p className="mt-3 text-sm leading-6 text-stone-700">
+            The lines on this page are simplified routes. The experience they stand in for was far
+            messier, longer, and more painful than any single path can fully show.
           </p>
         </div>
       </div>

@@ -147,36 +147,47 @@ export default function App() {
               <div className="absolute -right-16 top-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(191,145,67,0.24),transparent_72%)]" />
 
               <div className="relative flex flex-col gap-5">
-                <div className="max-w-none">
-                  <p className="section-kicker">The Route</p>
-                  <h2 className="mt-3 max-w-none font-display text-4xl leading-none tracking-tight text-stone-950 sm:text-5xl xl:text-[4rem]">
-                    Follow the forced paths west and trace where each nation was pushed.
-                  </h2>
-                  <p className="mt-4 max-w-5xl text-pretty text-sm leading-7 text-stone-700 sm:text-base">
-                    Select a route or a location to move through the geography of removal. The map,
-                    timeline, and narrative panel stay linked so the journey reads like a guided
-                    historical atlas instead of a static diagram.
-                  </p>
-
-                  <div className="mt-4 rounded-[1.45rem] border border-stone-400/14 bg-[#f8f2e6]/92 p-4 xl:hidden">
-                    <p className="section-kicker text-[0.62rem]">Mobile reading tip</p>
-                    <p className="mt-2 text-sm leading-6 text-stone-700">
-                      Open the menu in the upper left for the journey guide and section links,
-                      rotate to landscape if you want a wider map, and scroll below the map to
-                      reach the location panel and the full timeline.
+                <div className="grid gap-5 xl:grid-cols-[minmax(0,1.3fr)_minmax(300px,0.7fr)] xl:items-end">
+                  <div className="max-w-none">
+                    <p className="section-kicker">The Route</p>
+                    <h2 className="mt-3 max-w-none font-display text-4xl leading-[0.94] tracking-tight text-stone-950 sm:text-5xl xl:text-[4.3rem]">
+                      Trace five removals, then notice how differently each nation was pushed west.
+                    </h2>
+                    <p className="mt-4 max-w-5xl text-pretty text-sm leading-7 text-stone-700 sm:text-base">
+                      This page is designed to be read, not just scanned. Choose a route or click a
+                      stop on the map and the narrative panel, timeline, and route framing will stay
+                      linked so the geography reads as lived history rather than a detached diagram.
                     </p>
+
+                    <div className="mt-4 rounded-[1.45rem] border border-stone-400/14 bg-[#f8f2e6]/92 p-4 xl:hidden">
+                      <p className="section-kicker text-[0.62rem]">Mobile reading tip</p>
+                      <p className="mt-2 text-sm leading-6 text-stone-700">
+                        Open the menu in the upper left for the journey guide and section links,
+                        rotate to landscape for a wider map, and keep scrolling below the map for
+                        the route panel, timeline, sources, and feedback form.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[1.7rem] border border-stone-400/14 bg-[linear-gradient(180deg,rgba(22,42,36,0.95),rgba(19,35,31,0.92))] p-5 text-stone-100 shadow-[0_18px_36px_rgba(22,31,27,0.16)]">
+                    <p className="section-kicker text-stone-400">How to use this atlas</p>
+                    <div className="mt-4 space-y-3 text-sm leading-6 text-stone-300">
+                      <p>Pick one nation first, then compare it against another rather than treating all five removals as interchangeable.</p>
+                      <p>Clicking a stop updates the route panel so each location sits inside a larger system of policy, transport, and survival.</p>
+                      <p>On smaller screens, the menu, timeline, and panel are meant to be read in sequence below the map.</p>
+                    </div>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.24em] text-stone-600">
-                  <span className="rounded-full border border-stone-400/30 bg-white/55 px-4 py-2">
-                    Five Nations
+                  <span className="rounded-full border border-stone-400/30 bg-white/65 px-4 py-2">
+                    Five nations, distinct removals
                   </span>
-                  <span className="rounded-full border border-stone-400/30 bg-white/55 px-4 py-2">
+                  <span className="rounded-full border border-stone-400/30 bg-white/65 px-4 py-2">
+                    Linked map, timeline, and panel
+                  </span>
+                  <span className="rounded-full border border-stone-400/30 bg-white/65 px-4 py-2">
                     1830 to 1842
-                  </span>
-                  <span className="rounded-full border border-stone-400/30 bg-white/55 px-4 py-2">
-                    Interactive historical map
                   </span>
                 </div>
 

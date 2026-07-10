@@ -30,6 +30,7 @@ export interface TrailRoute {
   label: string;
   color: string;
   overview: string;
+  readingLens: string;
   displacement: string;
   featuredEventId: string;
   sources: SourceLink[];

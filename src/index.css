@@ -50,9 +50,10 @@ body {
     radial-gradient(circle at 12% 12%, rgba(195, 143, 53, 0.18), transparent 24%),
     radial-gradient(circle at 84% 8%, rgba(28, 63, 51, 0.22), transparent 25%),
     radial-gradient(circle at 90% 84%, rgba(107, 64, 171, 0.12), transparent 22%),
+    radial-gradient(circle at 52% 48%, rgba(255, 248, 234, 0.4), transparent 34%),
     radial-gradient(rgba(32, 24, 12, 0.032) 0.65px, transparent 0.65px),
     linear-gradient(180deg, #efe4d3 0%, #e7dece 40%, #efe8dc 100%);
-  background-size: auto, auto, auto, 14px 14px, auto;
+  background-size: auto, auto, auto, auto, 14px 14px, auto;
   color: var(--foreground);
   font-family: var(--font-body);
   text-rendering: optimizeLegibility;
@@ -72,11 +73,12 @@ a {
 
 .paper-panel {
   background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.95), rgba(244, 235, 219, 0.9)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.44), transparent 30%),
+    linear-gradient(180deg, rgba(255, 251, 243, 0.96), rgba(244, 235, 219, 0.9)),
     linear-gradient(135deg, rgba(255, 255, 255, 0.32), transparent 45%);
   border: 1px solid rgba(78, 56, 31, 0.12);
   box-shadow:
-    0 16px 40px rgba(45, 30, 15, 0.08),
+    0 18px 44px rgba(45, 30, 15, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
@@ -129,6 +131,22 @@ a {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 999px;
+  background: rgba(97, 78, 48, 0.34);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .indian-territory-label {
