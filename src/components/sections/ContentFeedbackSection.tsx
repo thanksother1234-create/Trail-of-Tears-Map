@@ -1,5 +1,5 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
-import { MessageSquareText, Send } from "lucide-react";
+import { Check, ChevronDown, MessageSquareText, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { trailRoutes } from "@/data/trailData";
@@ -13,6 +13,7 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSectionProps) {
   const [feedback, setFeedback] = useState("");
   const [routeLabel, setRouteLabel] = useState(selectedRouteLabel);
+  const [isRoutePickerOpen, setIsRoutePickerOpen] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [statusMessage, setStatusMessage] = useState("");
 
@@ -21,6 +22,7 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
   }, [selectedRouteLabel]);
 
   const trimmedFeedback = feedback.trim();
+  const selectedRoute = trailRoutes.find((route) => route.label === routeLabel);
   const helperText = useMemo(() => {
     if (submitState === "success") {
       return statusMessage;
@@ -119,18 +121,70 @@ export function ContentFeedbackSection({ selectedRouteLabel }: ContentFeedbackSe
             <label htmlFor="feedback-route" className="section-kicker block text-[0.62rem]">
               Route context
             </label>
-            <select
-              id="feedback-route"
-              value={routeLabel}
-              onChange={(event) => setRouteLabel(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-stone-400/18 bg-white/80 px-3 py-2 font-medium text-stone-900 outline-none transition focus:border-stone-500/30"
-            >
-              {trailRoutes.map((route) => (
-                <option key={route.id} value={route.label}>
-                  {route.label}
-                </option>
-              ))}
-            </select>
+            <div className="relative mt-2">
+              <button
+                id="feedback-route"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded={isRoutePickerOpen}
+                onClick={() => setIsRoutePickerOpen((isOpen) => !isOpen)}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape") {
+                    setIsRoutePickerOpen(false);
+                  }
+                }}
+                className="flex w-full items-center justify-between rounded-xl border border-stone-400/18 bg-white/80 px-3 py-2 text-left font-medium text-stone-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.82)] outline-none transition hover:border-stone-500/28 hover:bg-white focus:border-stone-500/32 focus:bg-white"
+              >
+                <span className="flex items-center gap-2.5">
+                  <span
+                    className="h-2.5 w-2.5 rounded-full"
+                    style={{ backgroundColor: selectedRoute?.color ?? "#17342c" }}
+                  />
+                  {routeLabel}
+                </span>
+                <ChevronDown
+                  className={`h-4 w-4 text-stone-500 transition ${
+                    isRoutePickerOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {isRoutePickerOpen ? (
+                <div
+                  role="listbox"
+                  aria-labelledby="feedback-route"
+                  className="absolute bottom-full z-20 mb-2 w-full rounded-[1.25rem] border border-white/10 bg-[#17342c] p-2 text-stone-100 shadow-[0_18px_38px_rgba(18,33,29,0.26)]"
+                >
+                  {trailRoutes.map((route) => {
+                    const isSelected = route.label === routeLabel;
+
+                    return (
+                      <button
+                        key={route.id}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        onClick={() => {
+                          setRouteLabel(route.label);
+                          setIsRoutePickerOpen(false);
+                        }}
+                        className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm transition ${
+                          isSelected
+                            ? "bg-white/12 text-white"
+                            : "text-stone-300 hover:bg-white/[0.08] hover:text-white"
+                        }`}
+                      >
+                        <span className="flex items-center gap-2.5">
+                          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: route.color }} />
+                          {route.label}
+                        </span>
+                        {isSelected ? <Check className="h-4 w-4 text-[#d5b471]" /> : null}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
 
