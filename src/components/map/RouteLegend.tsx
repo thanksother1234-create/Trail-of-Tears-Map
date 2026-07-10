@@ -17,7 +17,7 @@ export function RouteLegend({ className, routes }: RouteLegendProps) {
       <div className="space-y-1 md:pr-4">
         <p className="section-kicker text-[0.64rem]">Route Key</p>
         <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
-          Color separates route families across the map
+          Color separates nations; dashed segments indicate water travel
         </p>
       </div>
       {routes.map((route) => (

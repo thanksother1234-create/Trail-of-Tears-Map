@@ -99,9 +99,8 @@ export function StatementBanner() {
         <div id="sources" className="bg-[#10201c] p-6 sm:p-8">
           <p className="section-kicker text-stone-400">Sources</p>
           <p className="mt-4 text-sm leading-7 text-stone-300">
-            These references ground the project in tribal, federal, and public-history sources
-            used across the routes. Repeated sites are listed once at the home-page level to keep
-            the bibliography cleaner.
+            These direct references ground the project in tribal, federal, and public-history
+            sources used to identify the routes and their historical context.
           </p>
           <div className="mt-5 space-y-3 text-sm leading-6 text-stone-300">
             {sources.map((source) => (
