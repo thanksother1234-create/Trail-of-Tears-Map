@@ -66,9 +66,8 @@ export function HeroHeader({
               Removal by Design
             </h1>
             <p className="mt-4 max-w-4xl text-pretty text-base leading-7 text-stone-200/92 sm:text-lg">
-              A more human, route-by-route reading of the Trail of Tears: not one march, but five
-              overlapping removals shaped by law, military force, detention, weather, rivers, and
-              survival.
+              A route-by-route account of the Trail of Tears: not one march, but five overlapping removals shaped by law, military force, 
+              detention, weather, rivers, and survival.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <div className="rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs uppercase tracking-[0.28em] text-stone-200">
