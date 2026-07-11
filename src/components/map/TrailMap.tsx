@@ -63,7 +63,7 @@ function MapViewport({ routes }: { routes: TrailRoute[] }) {
 function TerritoryOverlay() {
   return (
     <>
-      <Pane name="territory-glow" style={{ zIndex: 285 }}>
+      <Pane name="territory-glow" style={{ zIndex: 410 }}>
         <Polygon
           interactive={false}
           positions={indianTerritoryOutline}
@@ -76,14 +76,14 @@ function TerritoryOverlay() {
         />
       </Pane>
 
-      <Pane name="territory-fill" style={{ zIndex: 290 }}>
+      <Pane name="territory-fill" style={{ zIndex: 420 }}>
         <Polygon
           interactive={false}
           positions={indianTerritoryOutline}
           pathOptions={{
             color: "#7f8f67",
             fillColor: "#becba6",
-            fillOpacity: 0.34,
+            fillOpacity: 0.62,
             opacity: 0.86,
             weight: 1.4,
           }}
