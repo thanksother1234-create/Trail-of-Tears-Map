@@ -202,7 +202,7 @@ export function TrailMap({
             <ZoomControl position="bottomright" />
             <MapViewport routes={visibleRoutes} />
             <TerritoryOverlay />
-            <Pane name="location-markers" style={{ zIndex: 500 }} />
+            <Pane name="location-markers" style={{ zIndex: 650 }} />
 
             {drawOrder.map((route) => {
               const isSelected = route.id === selectedRouteId;
@@ -227,9 +227,9 @@ export function TrailMap({
                       <CircleMarker
                         key={location.id}
                         center={location.coordinates}
+                        pane="location-markers"
                         radius={isLocationSelected ? 9.4 : isSelected ? 7 : 6}
                         pathOptions={{
-                          pane: "location-markers",
                           color: "#fff7ea",
                           fillColor: route.color,
                           fillOpacity: isLocationSelected ? 1 : 0.94,
