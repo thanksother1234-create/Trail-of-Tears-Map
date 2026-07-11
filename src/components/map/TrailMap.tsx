@@ -28,8 +28,8 @@ const indianTerritoryOutline: LatLngTuple[] = [
   [37.0, -103.0],
   [36.5, -103.0],
   [36.5, -100.0],
-  [34.56, -100.0],
-  [34.56, -94.43],
+  [33.55, -100.0],
+  [33.55, -94.43],
   [37.0, -94.43],
 ];
 
@@ -202,6 +202,7 @@ export function TrailMap({
             <ZoomControl position="bottomright" />
             <MapViewport routes={visibleRoutes} />
             <TerritoryOverlay />
+            <Pane name="location-markers" style={{ zIndex: 650 }} />
 
             {drawOrder.map((route) => {
               const isSelected = route.id === selectedRouteId;
@@ -226,6 +227,7 @@ export function TrailMap({
                       <CircleMarker
                         key={location.id}
                         center={location.coordinates}
+                        pane="location-markers"
                         radius={isLocationSelected ? 9.4 : isSelected ? 7 : 6}
                         pathOptions={{
                           color: "#fff7ea",
