@@ -95,16 +95,32 @@ export function StatementBanner() {
             ))}
           </div>
 
-          <div className="mt-6 flex items-center gap-3 text-[#d5b471]">
-            <img
-              src={favicon}
-              alt=""
-              aria-hidden="true"
-              className="h-5 w-5 rounded-sm object-contain"
-            />
-            <span className="text-xs font-semibold uppercase tracking-[0.24em]">
-              Project by Riley Griffin : CC1030660
-            </span>
+          <div className="mt-6 text-[#d5b471]">
+            <div className="flex items-center gap-3">
+              <img
+                src={favicon}
+                alt=""
+                aria-hidden="true"
+                className="h-5 w-5 rounded-sm object-contain"
+              />
+              <span className="text-xs font-semibold uppercase tracking-[0.24em]">
+                Project by Riley Griffin : CC1030660
+              </span>
+            </div>
+            <a
+              href="https://www.linkedin.com/in/riley-griffin-a6a4b3b1"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 ml-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-stone-300 transition hover:text-white"
+            >
+              <span
+                aria-hidden="true"
+                className="flex h-4 w-4 items-center justify-center rounded-[0.16rem] bg-[#0a66c2] text-[0.65rem] font-black lowercase leading-none text-white"
+              >
+                in
+              </span>
+              LinkedIn
+            </a>
           </div>
         </div>
       </div>
